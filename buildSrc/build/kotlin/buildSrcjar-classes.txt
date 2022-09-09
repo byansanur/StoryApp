@@ -1,0 +1,1 @@
+/Users/ratbyansa/development/StoryApp/buildSrc/build/classes/kotlin/main/Version.class

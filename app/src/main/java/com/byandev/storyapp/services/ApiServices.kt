@@ -1,8 +1,6 @@
 package com.byandev.storyapp.services
 
-import com.byandev.storyapp.data.model.ResponseAllStories
-import com.byandev.storyapp.data.model.ResponseBase
-import com.byandev.storyapp.data.model.ResponseLogin
+import com.byandev.storyapp.data.model.*
 import io.reactivex.rxjava3.core.Single
 import okhttp3.MultipartBody
 import retrofit2.http.*
@@ -11,16 +9,13 @@ interface ApiServices {
 
     @POST("register")
     fun postRegisterNewUser(
-        @Body name: String,
-        @Body email: String,
-        @Body password: String
+        @Body request: Register,
     ): Single<ResponseBase>
 
 
     @POST("login")
     fun postLoginUser(
-        @Body email: String,
-        @Body password: String
+        @Body request: Login
     ): Single<ResponseLogin>
 
     @Multipart

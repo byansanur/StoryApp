@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SharedPrefManager @Inject constructor(@ApplicationContext context: Context) {
+class SharedPrefManager @Inject constructor(context: Context) {
 
     private val pref: SharedPreferences = context.getSharedPreferences("storyApp", Context.MODE_PRIVATE)
     private val editor = pref.edit()

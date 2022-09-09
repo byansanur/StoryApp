@@ -32,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -40,6 +43,41 @@ dependencies {
     implementation AndroidLibraries.appCompat
     implementation AndroidLibraries.materialDesign
     implementation AndroidLibraries.constraintLayout
+
+    // Timber
+    implementation AndroidLibraries.timber
+
+    // fragment ktx
+    implementation AndroidLibraries.fragmentKtx
+
+    // glide
+    implementation AndroidLibraries.glideVersion
+
+    // retrofit
+    implementation AndroidLibraries.retrofit
+    implementation AndroidLibraries.okHttp
+    implementation AndroidLibraries.retrofitRxJava3
+    implementation AndroidLibraries.gson
+    implementation AndroidLibraries.moshiCoverter
+
+    // rx
+    implementation AndroidLibraries.rxJava
+    implementation AndroidLibraries.rxAndroid
+
+    // lifecycle
+    implementation AndroidLibraries.lifecycleService
+    implementation AndroidLibraries.lifecycleViewmodelKtx
+    implementation AndroidLibraries.lifecycleCommonJava8
+
+    // coroutines
+    implementation AndroidLibraries.coroutinesCore
+    implementation AndroidLibraries.coroutinesAndroid
+
+    // paging
+    implementation AndroidLibraries.pagingKtx
+    implementation AndroidLibraries.pagingRxJava
+
+
 
     // hilt
     implementation AndroidLibraries.hilt
@@ -53,6 +91,6 @@ dependencies {
 
 
     testImplementation TestLibraries.junit
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation TestLibraries.junitAnroidTest
+    androidTestImplementation TestLibraries.espressoCoreAnroidTest
 }

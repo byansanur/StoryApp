@@ -77,10 +77,12 @@ dependencies {
     implementation AndroidLibraries.pagingKtx
     implementation AndroidLibraries.pagingRxJava
 
-
+    // splashScreen
+    implementation AndroidLibraries.splashScreen
 
     // hilt
     implementation AndroidLibraries.hilt
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt AndroidLibraries.hiltKapt
     implementation AndroidLibraries.hiltAndroidX
     kapt AndroidLibraries.hiltAndroidXKapt

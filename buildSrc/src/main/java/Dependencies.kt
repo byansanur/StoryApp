@@ -23,6 +23,7 @@ object Versions {
     const val coroutinesVersion = "1.5.1"
     const val pagingVersion = "3.0.1"
     const val fragmentKtxVersion = "1.3.6"
+    const val splashScreenVersion = "1.0.0-beta02"
 }
 
 object BuildPlugins {
@@ -61,6 +62,7 @@ object AndroidLibraries {
     const val pagingKtx = "androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}"
     const val pagingRxJava = "androidx.paging:paging-rxjava3:${Versions.pagingVersion}"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}"
+    const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreenVersion}"
 }
 
 object TestLibraries {

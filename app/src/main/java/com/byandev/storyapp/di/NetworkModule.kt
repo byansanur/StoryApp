@@ -2,6 +2,7 @@ package com.byandev.storyapp.di
 
 import com.byandev.storyapp.BuildConfig
 import com.byandev.storyapp.services.ApiServices
+import com.byandev.storyapp.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -84,7 +85,7 @@ object NetworkModule {
         client: OkHttpClient
     ) : Retrofit {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())

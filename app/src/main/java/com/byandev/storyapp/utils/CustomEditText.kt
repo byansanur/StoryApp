@@ -117,8 +117,8 @@ class CustomEditText(context: Context, attrs: AttributeSet) : LinearLayout(conte
         var lengthPresent = false
         var specialCharacterPresent = false
 
-        for (element in input) {
-            currentCharacter = element
+        for (i in 0 until input.length) {
+            currentCharacter = input[i]
             when {
                 specialChars.contains(currentCharacter.toString()) -> specialCharacterPresent = true
                 Character.isDigit(currentCharacter) -> numberPresent = true
@@ -170,7 +170,6 @@ class CustomEditText(context: Context, attrs: AttributeSet) : LinearLayout(conte
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 onTextChanged.invoke(s.toString())
-
             }
         })
     }

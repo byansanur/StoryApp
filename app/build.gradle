@@ -43,6 +43,9 @@ dependencies {
     implementation AndroidLibraries.appCompat
     implementation AndroidLibraries.materialDesign
     implementation AndroidLibraries.constraintLayout
+    implementation AndroidLibraries.cardView
+    implementation AndroidLibraries.recyclerView
+    implementation AndroidLibraries.circleImageView
 
     // Timber
     implementation AndroidLibraries.timber

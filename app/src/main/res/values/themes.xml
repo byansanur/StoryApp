@@ -20,4 +20,11 @@
         <item name="windowSplashScreenAnimationDuration">2000</item>
         <item name="postSplashScreenTheme">@style/Theme.StoryApp</item>
     </style>
+
+    <style name="SampleEditTextStyle" parent="Theme.AppCompat.DayNight">
+        <item name="colorControlNormal">@android:color/transparent</item>
+        <item name="colorControlActivated">@android:color/transparent</item>
+        <item name="colorControlHighlight">@android:color/transparent</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 </resources>

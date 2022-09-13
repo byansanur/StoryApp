@@ -1,4 +1,4 @@
-package com.byandev.storyapp.ui.login_register
+package com.byandev.storyapp.presentation.login_register
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

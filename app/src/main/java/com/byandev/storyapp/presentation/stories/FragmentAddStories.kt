@@ -1,4 +1,4 @@
-package com.byandev.storyapp.ui.stories
+package com.byandev.storyapp.presentation.stories
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.byandev.storyapp.ui
+package com.byandev.storyapp.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -43,6 +43,12 @@ dependencies {
     implementation AndroidLibraries.appCompat
     implementation AndroidLibraries.materialDesign
     implementation AndroidLibraries.constraintLayout
+    implementation AndroidLibraries.cardView
+    implementation AndroidLibraries.recyclerView
+    implementation AndroidLibraries.circleImageView
+
+    // lottie
+    implementation AndroidLibraries.lottieAnimation
 
     // Timber
     implementation AndroidLibraries.timber
@@ -57,8 +63,14 @@ dependencies {
     implementation AndroidLibraries.retrofit
     implementation AndroidLibraries.okHttp
     implementation AndroidLibraries.retrofitRxJava3
+
+    // gson
     implementation AndroidLibraries.gson
+
+    // moshi
     implementation AndroidLibraries.moshiCoverter
+    implementation AndroidLibraries.moshiKotlin
+    kapt AndroidLibraries.moshiKaptKotlin
 
     // rx
     implementation AndroidLibraries.rxJava
@@ -77,10 +89,12 @@ dependencies {
     implementation AndroidLibraries.pagingKtx
     implementation AndroidLibraries.pagingRxJava
 
-
+    // splashScreen
+    implementation AndroidLibraries.splashScreen
 
     // hilt
     implementation AndroidLibraries.hilt
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt AndroidLibraries.hiltKapt
     implementation AndroidLibraries.hiltAndroidX
     kapt AndroidLibraries.hiltAndroidXKapt

@@ -3,6 +3,7 @@ package com.byandev.storyapp.di
 import com.byandev.storyapp.BuildConfig
 import com.byandev.storyapp.services.ApiServices
 import com.byandev.storyapp.utils.BASE_URL
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -78,6 +79,14 @@ object NetworkModule {
             }
             .build()
     }
+
+//    @Singleton
+//    @Provides
+//    fun moshi() : Moshi {
+//        return Moshi.Builder()
+//            .add(KotlinJsonAdapterFactory())
+//            .build()
+//    }
 
     @Singleton
     @Provides

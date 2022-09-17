@@ -1,5 +1,5 @@
 object Versions {
-    const val gradlePlugin = "7.0.4"
+    const val gradlePlugin = "7.1.3"
     const val kotlin = "1.6.21"
     const val timber = "4.7.1"
     const val appCompat = "1.5.1"
@@ -16,6 +16,7 @@ object Versions {
     const val retrofitVersion = "2.9.0"
     const val okHttpVersion = "5.0.0-alpha.2"
     const val moshiVersion = "2.9.0"
+    const val moshiKotlinVersion = "1.14.0"
     const val gsonVersion = "2.9.0"
     const val rxJava3Version = "3.0.2"
     const val rxAndroidVersion = "3.0.0"
@@ -23,6 +24,11 @@ object Versions {
     const val coroutinesVersion = "1.5.1"
     const val pagingVersion = "3.0.1"
     const val fragmentKtxVersion = "1.3.6"
+    const val splashScreenVersion = "1.0.0-beta02"
+    const val cardViews = "1.0.0"
+    const val recyclerViews = "1.2.1"
+    const val circleImageViews = "3.1.0"
+    const val lottie = "3.4.1"
 }
 
 object BuildPlugins {
@@ -38,6 +44,8 @@ object AndroidLibraries {
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val materialDesign = "com.google.android.material:material:${Versions.material}"
+    const val cardView = "androidx.cardview:cardview:${Versions.cardViews}"
+    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViews}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val glideVersion = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
     const val hilt = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
@@ -50,6 +58,8 @@ object AndroidLibraries {
     const val okHttp = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpVersion}"
     const val retrofitRxJava3 = "com.squareup.retrofit2:adapter-rxjava3:${Versions.moshiVersion}"
     const val moshiCoverter = "com.squareup.retrofit2:converter-moshi:${Versions.moshiVersion}"
+    const val moshiKaptKotlin = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshiKotlinVersion}"
+    const val moshiKotlin = "com.squareup.moshi:moshi:${Versions.moshiKotlinVersion}"
     const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
     const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava3Version}"
     const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroidVersion}"
@@ -61,6 +71,9 @@ object AndroidLibraries {
     const val pagingKtx = "androidx.paging:paging-runtime-ktx:${Versions.pagingVersion}"
     const val pagingRxJava = "androidx.paging:paging-rxjava3:${Versions.pagingVersion}"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtxVersion}"
+    const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreenVersion}"
+    const val circleImageView = "de.hdodenhof:circleimageview:${Versions.circleImageViews}"
+    const val lottieAnimation = "com.airbnb.android:lottie:${Versions.lottie}"
 }
 
 object TestLibraries {

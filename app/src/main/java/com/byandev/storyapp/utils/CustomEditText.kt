@@ -3,17 +3,20 @@ package com.byandev.storyapp.utils
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
+import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.byandev.storyapp.R
 import kotlin.properties.Delegates
@@ -32,6 +35,11 @@ class CustomEditText(context: Context, attrs: AttributeSet) : LinearLayout(conte
     private var hintText: String? = null
 
     private var isPassword = true
+    private var isEmail = true
+    private var passwordToggleEnabled = true
+    private var passwordToggleDrawable: Int? = null
+
+    private lateinit var clearButtonImage: Drawable
 
     private var showBottomTips: Boolean = true
     private var cardProgressColor: Int? = null
@@ -74,7 +82,9 @@ class CustomEditText(context: Context, attrs: AttributeSet) : LinearLayout(conte
         if (isPassword) {
             editText?.transformationMethod = PasswordTransformationMethod.getInstance()
         } else {
-            editText?.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+            editText?.inputType =
+                if (isEmail) InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                else InputType.TYPE_CLASS_TEXT
         }
 
         editText?.onTextChanged { t ->
@@ -102,6 +112,10 @@ class CustomEditText(context: Context, attrs: AttributeSet) : LinearLayout(conte
         cardProgressColor = attributes.getColor(R.styleable.PasswordEditText_cardProgressColor, Color.GREEN)
         hintText = attributes.getString(R.styleable.PasswordEditText_placeholderText)
         isPassword = attributes.getBoolean(R.styleable.PasswordEditText_isPassword, true)
+        passwordToggleEnabled = attributes.getBoolean(R.styleable
+            .PasswordEditText_passwordToggleEnableds, false)
+        passwordToggleDrawable = attributes.getColor(R.styleable
+            .PasswordEditText_passwordToggleDrawables, Color.BLACK)
         attributes.recycle()
     }
 
@@ -162,6 +176,10 @@ class CustomEditText(context: Context, attrs: AttributeSet) : LinearLayout(conte
         editText?.onTextChanged(onTextChanged)
     }
 
+    fun CharSequence?.isValidEmail() = !isNullOrEmpty() &&
+            Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
+
     private fun EditText.onTextChanged(onTextChanged: (String) -> Unit) {
         this.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
@@ -170,7 +188,12 @@ class CustomEditText(context: Context, attrs: AttributeSet) : LinearLayout(conte
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 onTextChanged.invoke(s.toString())
+                if (!isPassword && isEmail) {
+                    s.isValidEmail()
+                }
             }
         })
     }
+
+
 }

@@ -23,13 +23,7 @@
         android:id="@+id/fragmentRegister"
         android:name="com.byandev.storyapp.presentation.login_register.FragmentRegister"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_fragmentRegister_to_fragmentHome"
-            app:destination="@id/fragmentHome"
-            app:popUpTo="@id/fragmentHome"
-            app:popUpToInclusive="true"/>
-    </fragment>
+        tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/fragmentAddStories"
         android:name="com.byandev.storyapp.presentation.stories.FragmentAddStories"

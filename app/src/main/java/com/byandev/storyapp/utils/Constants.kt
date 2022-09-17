@@ -1,5 +1,8 @@
 package com.byandev.storyapp.utils
 
+import android.app.Dialog
+import android.widget.TextView
+import com.byandev.storyapp.R
 import com.byandev.storyapp.data.model.ErrorBody
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -41,4 +44,10 @@ fun getMessageError(errorBody: String?): String {
             "Failed to read server"
         }
     }
+}
+
+fun dialogLoading(dialog: Dialog) {
+    dialog.setContentView(R.layout.item_dialog_loading)
+    dialog.setCancelable(false)
+    dialog.show()
 }

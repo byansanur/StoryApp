@@ -47,6 +47,9 @@ dependencies {
     implementation AndroidLibraries.recyclerView
     implementation AndroidLibraries.circleImageView
 
+    // lottie
+    implementation AndroidLibraries.lottieAnimation
+
     // Timber
     implementation AndroidLibraries.timber
 
@@ -60,8 +63,14 @@ dependencies {
     implementation AndroidLibraries.retrofit
     implementation AndroidLibraries.okHttp
     implementation AndroidLibraries.retrofitRxJava3
+
+    // gson
     implementation AndroidLibraries.gson
+
+    // moshi
     implementation AndroidLibraries.moshiCoverter
+    implementation AndroidLibraries.moshiKotlin
+    kapt AndroidLibraries.moshiKaptKotlin
 
     // rx
     implementation AndroidLibraries.rxJava

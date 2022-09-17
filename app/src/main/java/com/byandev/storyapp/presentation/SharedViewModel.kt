@@ -34,7 +34,8 @@ class SharedViewModel @Inject constructor(
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe { output.postValue(Resources.Loading()) }
                     .subscribe({
-                        output.postValue(Resources.Success(it))
+                        if (!it.error) output.postValue(Resources.Success(it))
+                        else output.postValue(Resources.Error(it.message, null))
                     }, {
                         output.postValue(Resources.Error(handlingError(it), null))
                     })
@@ -55,7 +56,8 @@ class SharedViewModel @Inject constructor(
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe { output.postValue(Resources.Loading()) }
                     .subscribe({
-                        output.postValue(Resources.Success(it))
+                        if (!it.error) output.postValue(Resources.Success(it))
+                        else output.postValue(Resources.Error(it.message, null))
                     }, {
                         output.postValue(Resources.Error(handlingError(it), null))
                     })

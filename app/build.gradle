@@ -1,19 +1,22 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    compileSdk 32
+    compileSdk ConfigData.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.byandev.storyapp"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        applicationId ConfigData.applicationId
+        minSdk ConfigData.minSdkVersion
+        targetSdk ConfigData.targetSdkVersion
+        versionCode ConfigData.versionCodes
+        versionName ConfigData.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -29,15 +32,79 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation AndroidLibraries.coreKtx
+    implementation AndroidLibraries.appCompat
+    implementation AndroidLibraries.materialDesign
+    implementation AndroidLibraries.constraintLayout
+    implementation AndroidLibraries.cardView
+    implementation AndroidLibraries.recyclerView
+    implementation AndroidLibraries.circleImageView
+
+    // lottie
+    implementation AndroidLibraries.lottieAnimation
+
+    // Timber
+    implementation AndroidLibraries.timber
+
+    // fragment ktx
+    implementation AndroidLibraries.fragmentKtx
+
+    // glide
+    implementation AndroidLibraries.glideVersion
+
+    // retrofit
+    implementation AndroidLibraries.retrofit
+    implementation AndroidLibraries.okHttp
+    implementation AndroidLibraries.retrofitRxJava3
+
+    // gson
+    implementation AndroidLibraries.gson
+
+    // moshi
+    implementation AndroidLibraries.moshiCoverter
+    implementation AndroidLibraries.moshiKotlin
+    kapt AndroidLibraries.moshiKaptKotlin
+
+    // rx
+    implementation AndroidLibraries.rxJava
+    implementation AndroidLibraries.rxAndroid
+
+    // lifecycle
+    implementation AndroidLibraries.lifecycleService
+    implementation AndroidLibraries.lifecycleViewmodelKtx
+    implementation AndroidLibraries.lifecycleCommonJava8
+
+    // coroutines
+    implementation AndroidLibraries.coroutinesCore
+    implementation AndroidLibraries.coroutinesAndroid
+
+    // paging
+    implementation AndroidLibraries.pagingKtx
+    implementation AndroidLibraries.pagingRxJava
+
+    // splashScreen
+    implementation AndroidLibraries.splashScreen
+
+    // hilt
+    implementation AndroidLibraries.hilt
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt AndroidLibraries.hiltKapt
+    implementation AndroidLibraries.hiltAndroidX
+    kapt AndroidLibraries.hiltAndroidXKapt
+
+    // nav
+    implementation AndroidLibraries.navigation
+    implementation AndroidLibraries.navigationUi
+
+
+    testImplementation TestLibraries.junit
+    androidTestImplementation TestLibraries.junitAnroidTest
+    androidTestImplementation TestLibraries.espressoCoreAnroidTest
 }

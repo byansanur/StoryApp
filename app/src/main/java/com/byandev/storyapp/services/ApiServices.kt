@@ -28,11 +28,11 @@ interface ApiServices {
     ) : Single<ResponseBase>
 
     @GET("stories")
-    fun getAllStories(
+    suspend fun getAllStories(
         @Query("page") page: Int,
         @Query("size") size: Int,
         @Query("location") location: Int?
-    ) : Single<ResponseAllStories>
+    ) : ResponseAllStories
 
 
 }

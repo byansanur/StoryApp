@@ -60,39 +60,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvWelcome2" />
 
-        <com.byandev.storyapp.utils.CustomEditText
+        <com.byandev.storyapp.utils.GeneralEditText
             android:id="@+id/edtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            app:placeholderText="Name"
-            app:cardElevation="3dp"
-            app:isPassword="false"
-            app:showBottomTips="false"
+            android:hint="@string/name"
+            android:inputType="text"
             app:layout_constraintTop_toBottomOf="@id/tvSignUp"/>
 
 
-        <com.byandev.storyapp.utils.CustomEditText
+        <com.byandev.storyapp.utils.EmailEditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:placeholderText="email"
-            app:cardElevation="3dp"
-            app:isPassword="false"
-            app:showBottomTips="false"
+            android:layout_marginTop="24dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
             app:layout_constraintTop_toBottomOf="@id/edtName"/>
 
-        <com.byandev.storyapp.utils.CustomEditText
+        <com.byandev.storyapp.utils.PasswordEditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:showBottomTips="true"
-            app:isPassword="true"
-            app:cardElevation="3dp"
-            app:placeholderText="password"
-            app:cardProgressColor="@color/blue_dicoding"
-            app:cardCornerRadius="16dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

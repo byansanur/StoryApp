@@ -1,9 +1,6 @@
 package com.byandev.storyapp.services
 
-import com.byandev.storyapp.data.model.Login
-import com.byandev.storyapp.data.model.Register
-import com.byandev.storyapp.data.model.ResponseBase
-import com.byandev.storyapp.data.model.ResponseLogin
+import com.byandev.storyapp.data.model.*
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 import javax.inject.Singleton

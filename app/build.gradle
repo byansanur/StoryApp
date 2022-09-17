@@ -50,6 +50,9 @@ dependencies {
     // lottie
     implementation AndroidLibraries.lottieAnimation
 
+    // easy permission
+    implementation AndroidLibraries.easyPermission
+
     // Timber
     implementation AndroidLibraries.timber
 

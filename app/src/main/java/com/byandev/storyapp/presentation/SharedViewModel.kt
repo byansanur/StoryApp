@@ -3,6 +3,10 @@ package com.byandev.storyapp.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
+import androidx.paging.map
+import com.byandev.storyapp.data.DataRepository
 import com.byandev.storyapp.data.model.Login
 import com.byandev.storyapp.data.model.Register
 import com.byandev.storyapp.data.model.ResponseBase
@@ -15,12 +19,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(
     private val servicesRepository: ServicesRepository,
-    private val utilsConnect: UtilsConnect
+    private val utilsConnect: UtilsConnect,
+    private val dataRepository: DataRepository
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -68,4 +74,7 @@ class SharedViewModel @Inject constructor(
         return output
     }
 
+    fun getListStory(location: Int) = dataRepository.getListStory(location)
+        .map { data -> data.map { it } }
+        .cachedIn(viewModelScope)
 }

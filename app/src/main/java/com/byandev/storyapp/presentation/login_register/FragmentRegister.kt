@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -59,9 +60,9 @@ class FragmentRegister : Fragment() {
         dialog = Dialog(requireContext())
 
         binding.apply {
-            edtName.onTextChanged { nameUser = it }
-            edtEmail.onTextChanged { emailUser = it }
-            edtPassword.onTextChanged { passwordUser = it }
+            edtName.doOnTextChanged { text, _, _, _ -> nameUser = text.toString() }
+            edtEmail.doOnTextChanged { text, _, _, _ -> emailUser = text.toString() }
+            edtPassword.doOnTextChanged { text, _, _, _ -> passwordUser = text.toString() }
 
             tvLogin.setOnClickListener { findNavController().navigateUp() }
             btnRegister.setOnClickListener {
@@ -90,6 +91,8 @@ class FragmentRegister : Fragment() {
                     is Resources.Success -> {
                         dialog.dismiss()
                         Log.e(TAG, "registerNewUser: success ${Gson().toJson(it.data)}")
+                        sharedPref.userKey = passwordUser
+                        sharedPref.email = emailUser
                         Toast.makeText(requireContext(), "${it.data?.message}", Toast.LENGTH_SHORT)
                             .show()
                         findNavController().navigateUp()

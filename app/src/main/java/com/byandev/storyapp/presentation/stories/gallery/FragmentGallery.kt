@@ -57,8 +57,8 @@ class FragmentGallery : Fragment() {
             adapter.setOnItemClickListener {
                 File(it).let { data ->
                     val intent = Intent(requireContext(), ActivityStoryForms::class.java)
-                    intent.putExtra("file", data.toURI())
-                    requireActivity().startActivity(intent)
+                    intent.putExtra("file", data.toString())
+                    startActivity(intent)
                 }
             }
         }

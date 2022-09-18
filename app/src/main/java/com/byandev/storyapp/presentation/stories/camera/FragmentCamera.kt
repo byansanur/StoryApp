@@ -106,8 +106,8 @@ class FragmentCamera : Fragment() {
                                 captureImage.isEnabled = true
                                 loading.dismiss()
                                 val intent = Intent(requireContext(), ActivityStoryForms::class.java)
-                                intent.putExtra("file", file.toURI())
-                                requireActivity().startActivity(intent)
+                                intent.putExtra("file", file.toString())
+                                startActivity(intent)
 
                             }
 

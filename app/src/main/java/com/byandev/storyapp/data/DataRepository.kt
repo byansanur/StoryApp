@@ -10,12 +10,12 @@ class DataRepository @Inject constructor(
     private val apiServices: ApiServices
 ) {
 
-    fun getListStory(location: Int) =
+    fun getListStory() =
         Pager(
             config = PagingConfig(
                 pageSize = 10,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { StoryPagingSource(apiServices = apiServices, location = location) }
+            pagingSourceFactory = { StoryPagingSource(apiServices = apiServices) }
         ).flow
 }

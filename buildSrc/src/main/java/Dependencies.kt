@@ -31,6 +31,8 @@ object Versions {
     const val circleImageViews = "3.1.0"
     const val lottie = "3.4.1"
     const val easyPermission = "1.0.0"
+    const val cameraVersion = "1.2.0-beta01"
+    const val photoView = "2.3.0"
 }
 
 object BuildPlugins {
@@ -78,6 +80,12 @@ object AndroidLibraries {
     const val circleImageView = "de.hdodenhof:circleimageview:${Versions.circleImageViews}"
     const val lottieAnimation = "com.airbnb.android:lottie:${Versions.lottie}"
     const val easyPermission = "com.vmadalin:easypermissions-ktx:${Versions.easyPermission}"
+    const val cameraCore = "androidx.camera:camera-core:${Versions.cameraVersion}"
+    const val camera2 = "androidx.camera:camera-camera2:${Versions.cameraVersion}"
+    const val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraVersion}"
+    const val cameraView = "androidx.camera:camera-view:${Versions.cameraVersion}"
+    const val cameraExtension = "androidx.camera:camera-extensions:${Versions.cameraVersion}"
+    const val photoView = "com.github.chrisbanes:PhotoView:${Versions.photoView}"
 }
 
 object TestLibraries {

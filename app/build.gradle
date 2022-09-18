@@ -106,6 +106,16 @@ dependencies {
     implementation AndroidLibraries.navigation
     implementation AndroidLibraries.navigationUi
 
+    // camera
+    implementation AndroidLibraries.cameraCore
+    implementation AndroidLibraries.camera2
+    implementation AndroidLibraries.cameraLifecycle
+    implementation AndroidLibraries.cameraView
+    implementation AndroidLibraries.cameraExtension
+
+    // photoView
+    implementation AndroidLibraries.photoView
+
 
     testImplementation TestLibraries.junit
     androidTestImplementation TestLibraries.junitAnroidTest

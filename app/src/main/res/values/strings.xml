@@ -23,4 +23,18 @@
     <string name="username">username</string>
     <string name="time_ago">Ago</string>
     <string name="add_story">Add story</string>
+    <string name="camera">CAMERA</string>
+    <string name="gallery">GALLERY</string>
+    <string name="failed_access_camera">Application failed to access camera</string>
+    <string name="check_permission_again">Please check the app permissions again</string>
+    <string name="image_to_add_story">image to add story</string>
+    <string name="write_your_caption_here">write your caption here…</string>
+    <string name="add_location_in_yor_post">Add Location in yor post</string>
+    <string name="post">Post</string>
+    <string name="login">Login</string>
+    <string name="remember_me">Remember me</string>
+    <string name="register_here">Register here</string>
+    <string name="sign_in">Sign in</string>
+    <string name="desc_login_register">Create impact and post your story in our platform</string>
+    <string name="title_login_register">Welcome Developers</string>
 </resources>

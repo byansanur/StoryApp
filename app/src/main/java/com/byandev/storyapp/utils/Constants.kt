@@ -7,12 +7,15 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.drawable.Icon
 import android.os.Build
+import android.util.Base64.NO_PADDING
+import android.util.Base64.encodeToString
 import androidx.annotation.RequiresApi
 import com.byandev.storyapp.R
 import com.byandev.storyapp.data.model.ErrorBody
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import retrofit2.HttpException
+import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.net.ConnectException
 import java.net.SocketException
@@ -25,6 +28,8 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
 const val BASE_URL = "https://story-api.dicoding.dev/v1/"
+
+const val PICK_IMAGE = "PICK_IMAGE"
 
 fun handlingError(error: Throwable) : String {
     return when (error) {
@@ -113,4 +118,11 @@ fun covertTimeToText(dataDate: String?, context: Context): String? {
         e.printStackTrace()
     }
     return convTime
+}
+
+fun getEncoded64ImageStringFromBitmap(bitmap: Bitmap): String {
+    val stream = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+    val byteFormat: ByteArray = stream.toByteArray()
+    return encodeToString(byteFormat, NO_PADDING)
 }

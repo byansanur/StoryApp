@@ -56,8 +56,8 @@ class SharedPrefManager @Inject constructor(context: Context) {
         set(value) = editor.putBoolean(SP_IS_LOGIN, value).apply()
 
     var userId: String
-        get() = pref.getString(SP_USER_ID, "")!!
-        set(value) = editor.putString(SP_USER_ID, value).apply()
+        get() = String(Base64.decode(pref.getString(SP_USER_ID, ""), 0))
+        set(value) = editor.putString(SP_USER_ID, Base64.encodeToString(value.toByteArray(), 0)).apply()
 
     var userName: String
         get() = pref.getString(SP_NAME, "")!!

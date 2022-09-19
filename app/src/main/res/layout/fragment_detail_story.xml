@@ -20,7 +20,8 @@
         android:id="@+id/clAbout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:background="#90000000"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             tools:text="@string/username"
             android:textSize="18sp"
             android:fontFamily="sans-serif-condensed-medium"
@@ -52,10 +53,27 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
+            android:id="@+id/tvDesc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/imgUser"
+            app:layout_constraintStart_toStartOf="@id/imgUser"
+            app:layout_constraintEnd_toEndOf="@id/tvUserName"/>
+
+        <TextView
+            android:id="@+id/tvUpdated"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/tvDesc"
             app:layout_constraintStart_toStartOf="@id/imgUser"
             app:layout_constraintEnd_toEndOf="@id/tvUserName"
             app:layout_constraintBottom_toBottomOf="parent"/>

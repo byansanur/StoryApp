@@ -20,6 +20,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
 import com.byandev.storyapp.R
 import com.byandev.storyapp.data.model.ErrorBody
 import com.google.gson.Gson
@@ -122,7 +124,6 @@ fun covertTimeToText(dataDate: String?, context: Context): String? {
         val pasTime = dateFormat.parse(dataDate).time
         val nowTime = System.currentTimeMillis()
         val dateDiff: Long = nowTime - pasTime
-        val second: Long = TimeUnit.MILLISECONDS.toSeconds(dateDiff)
         val minute: Long = TimeUnit.MILLISECONDS.toMinutes(dateDiff)
         val hour: Long = TimeUnit.MILLISECONDS.toHours(dateDiff)
         val day: Long = TimeUnit.MILLISECONDS.toDays(dateDiff)
@@ -150,9 +151,14 @@ fun covertTimeToText(dataDate: String?, context: Context): String? {
     return convTime
 }
 
-fun getEncoded64ImageStringFromBitmap(bitmap: Bitmap): String {
-    val stream = ByteArrayOutputStream()
-    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-    val byteFormat: ByteArray = stream.toByteArray()
-    return encodeToString(byteFormat, NO_PADDING)
+fun glideUrls(
+    url: String,
+    token: String
+) : GlideUrl {
+    return GlideUrl(
+        url,
+        LazyHeaders.Builder()
+            .addHeader("Authorization", "Bearer $token")
+            .build()
+    )
 }

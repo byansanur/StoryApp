@@ -9,16 +9,13 @@ import androidx.annotation.RequiresApi
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.model.GlideUrl
-import com.bumptech.glide.load.model.LazyHeaders
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.byandev.storyapp.data.model.Story
 import com.byandev.storyapp.databinding.ItemStoryOtherBinding
 import com.byandev.storyapp.di.GlideApp
 import com.byandev.storyapp.di.SharedPrefManager
 import com.byandev.storyapp.utils.covertTimeToText
+import com.byandev.storyapp.utils.glideUrls
 import com.byandev.storyapp.utils.textAsBitmap
 import javax.inject.Inject
 
@@ -55,12 +52,7 @@ class AdapterStoryPaging @Inject constructor(
         fun bind(story: Story) {
             binding.apply {
 
-                val glideUrl = GlideUrl(
-                    story.photoUrl,
-                    LazyHeaders.Builder()
-                        .addHeader("Authorization", "Bearer ${sharedPrefManager.token}")
-                        .build()
-                )
+                val glideUrl = glideUrls(url = story.photoUrl, token = sharedPrefManager.token)
                 GlideApp.with(root.context)
                     .load(glideUrl)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

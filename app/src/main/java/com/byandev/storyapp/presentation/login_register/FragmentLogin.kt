@@ -73,18 +73,20 @@ class FragmentLogin : Fragment() {
                 findNavController().navigate(FragmentLoginDirections.actionFragmentLoginToFragmentRegister())
             }
 
-            Log.e(TAG, "onViewCreated: ${sharedPref.userKey} ${sharedPref.email}")
-
             if (sharedPref.isRemember) {
                 edtEmail.setText(sharedPref.email)
                 edtPassword.setText(sharedPref.userKey)
+                cbRemember.isChecked = sharedPref.isRemember
+
+                emailUser = sharedPref.email
+                passwordUser = sharedPref.userKey
+                isRemembered = sharedPref.isRemember
             }
             edtEmail.doOnTextChanged { text, _, _, _ ->  emailUser = text.toString() }
             edtPassword.doOnTextChanged { text, _, _, _ -> passwordUser = text.toString() }
 
             cbRemember.setOnCheckedChangeListener { _, isChecked ->
                 isRemembered = isChecked
-                Log.e(TAG, "onViewCreated: $isRemembered")
             }
 
             btnLogin.setOnClickListener {
@@ -108,10 +110,9 @@ class FragmentLogin : Fragment() {
             delay(5000)
             sharedViewModel.loginUsers(login).observe(viewLifecycleOwner) {
                 when(it) {
-                    is Resources.Loading -> Log.e(TAG, "loginUser: loading")
+                    is Resources.Loading -> {}
                     is Resources.Success -> {
                         dialog.dismiss()
-                        Log.e(TAG, "loginUser: success ${Gson().toJson(it.data)}")
                         loginSaved(it.data?.loginResult)
                         val nav = FragmentLoginDirections.actionFragmentLoginToFragmentHome()
                         findNavController().navigate(nav)
@@ -120,7 +121,6 @@ class FragmentLogin : Fragment() {
                     }
                     is Resources.Error -> {
                         dialog.dismiss()
-                        Log.e(TAG, "loginUser: error cause ${it.message}")
                         Toast.makeText(requireContext(), "Error:${it.message}", Toast.LENGTH_SHORT)
                             .show()
                     }

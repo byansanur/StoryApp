@@ -31,13 +31,12 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_fragmentHome_to_fragmentLogin"
-            app:destination="@id/fragmentLogin" />
+            app:destination="@id/fragmentLogin"
+            app:popUpTo="@id/fragmentLogin"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_fragmentHome_to_fragmentIntroPermission"
             app:destination="@id/fragmentIntroPermission" />
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentAccount2"
-            app:destination="@id/fragmentAccount2" />
         <action
             android:id="@+id/action_fragmentHome_to_fragmentStoryForm"
             app:destination="@id/fragmentStoryForm" />
@@ -56,11 +55,6 @@
             app:popUpTo="@id/fragmentHome"
             app:popUpToInclusive="true"/>
     </fragment>
-    <fragment
-        android:id="@+id/fragmentAccount2"
-        android:name="com.byandev.storyapp.presentation.account.FragmentAccount"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/fragmentCamera"
         android:name="com.byandev.storyapp.presentation.stories.camera.FragmentCamera"

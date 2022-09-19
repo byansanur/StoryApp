@@ -1,15 +1,16 @@
 package com.byandev.storyapp.presentation.home
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -31,6 +32,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.launch
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.inject.Inject
@@ -125,14 +127,7 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
             adapterStoryPaging.addLoadStateListener {
                 when(it.source.refresh) {
                     is LoadState.Loading -> {}
-                    is LoadState.NotLoading -> {
-                        if (adapterStoryPaging.itemCount < 1)
-                            Toast.makeText(
-                                requireContext(),
-                                getString(R.string.no_data),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                    }
+                    is LoadState.NotLoading -> {}
                     is LoadState.Error -> {
                         val e = it.refresh as LoadState.Error
                         val msgErr = when (e.error) {
@@ -147,6 +142,7 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
                             }
                             else -> "Error ${e.error.message}"
                         }
+                        Toast.makeText(requireContext(), msgErr, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -167,8 +163,8 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 // Handle the menu selection
                 when (menuItem.itemId) {
-                    R.id.fragmentAccount -> {
-                        findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToFragmentAccount2())
+                    R.id.logout -> {
+                        dialogLogout()
                         return true
                     }
                     R.id.fragmentAdd -> {
@@ -179,6 +175,38 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
                 return false
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    private fun dialogLogout() {
+        val dialogBuilder = AlertDialog.Builder(context, R.style.MyDialogTheme)
+        val inflater = requireActivity().layoutInflater
+        val dialogView = inflater.inflate(R.layout.item_dialog_confirm, null)
+        dialogBuilder.setView(dialogView)
+
+
+        val tvInfoDialog = dialogView.findViewById<TextView>(R.id.tvInfoDialog)
+        val btnNegative = dialogView.findViewById<Button>(R.id.btnNegative)
+        val btnPositive = dialogView.findViewById<Button>(R.id.btnPositive)
+
+        tvInfoDialog.text = getString(R.string.logout_message)
+        btnNegative.text = getString(R.string.no)
+        btnPositive.text = getString(R.string.yes)
+
+        val alertDialog = dialogBuilder.create()
+        btnNegative.setOnClickListener { alertDialog.dismiss() }
+
+        btnPositive.setOnClickListener {
+            lifecycleScope.launch {
+                alertDialog.dismiss()
+                dialogLoading(dialog)
+                delay(2000)
+                dialog.dismiss()
+                sharedPrefManager.logoutRemoveToken()
+                findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToFragmentLogin())
+            }
+        }
+
+        alertDialog.show()
     }
 
 

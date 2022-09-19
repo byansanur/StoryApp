@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.byandev.storyapp.R
 import com.byandev.storyapp.adapter.SlidePermissionAdapter
@@ -39,6 +40,10 @@ class FragmentIntroPermission : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() { requireActivity().finishAffinity() }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         setupViewPager()
     }
@@ -97,7 +102,7 @@ class FragmentIntroPermission : Fragment() {
     private fun checkCameraPermission() {
         if (EasyPermissions.hasPermissions(requireContext(), Manifest.permission.CAMERA)) {
             //next page
-            binding?.viewPager?.setCurrentItem(1, true)
+            binding.viewPager.setCurrentItem(1, true)
             Timber.wtf("CAMERA ALLOWED")
         } else {
             EasyPermissions.requestPermissions(
@@ -118,12 +123,12 @@ class FragmentIntroPermission : Fragment() {
             )
         ) {
             //next page
-            binding?.viewPager?.setCurrentItem(2, true)
-            Timber.wtf("FILE DI IZINKAN")
+            binding.viewPager.setCurrentItem(2, true)
+            Timber.wtf("FILE ALLOWED")
         } else {
             EasyPermissions.requestPermissions(
                 this,
-                "Izinkan aplikasi mengakses berkas",
+                "Allow the app to access the media file",
                 REQUEST_CODE_FILE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE
@@ -139,7 +144,7 @@ class FragmentIntroPermission : Fragment() {
             sharedPrefManager.isIntroSp = false
             findNavController().navigate(FragmentIntroPermissionDirections.actionFragmentIntroPermissionToFragmentHome())
         } else {
-            EasyPermissions.requestPermissions(this, "Izinkan aplikasi mengakses lokasi",
+            EasyPermissions.requestPermissions(this, "Allow the app to access the location",
                 REQUEST_CODE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION

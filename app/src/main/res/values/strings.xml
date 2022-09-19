@@ -49,4 +49,9 @@
     <string name="success_add_story">Success! story was added…</string>
     <string name="failed_to_load_photo">Failed to load photo</string>
     <string name="no_data">No data available</string>
+    <string name="logout">logout</string>
+    <string name="logout_message">Quit the app?</string>
+    <string name="sign_in_here">Sign In here</string>
+    <string name="register">Register</string>
+    <string name="sign_up">Sign up</string>
 </resources>

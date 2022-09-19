@@ -13,10 +13,6 @@ class SharedPrefManager @Inject constructor(context: Context) {
     private val pref: SharedPreferences = context.getSharedPreferences("storyApp", Context.MODE_PRIVATE)
     private val editor = pref.edit()
 
-    private val prefIntro: SharedPreferences =
-        context.getSharedPreferences("intro_sales_track_pref", Context.MODE_PRIVATE)
-    private val editorIntro = prefIntro.edit()
-
     companion object {
         const val SP_INTRO = "sp_intro"
         const val SP_IS_LOGIN = "sp_is_login"
@@ -28,14 +24,14 @@ class SharedPrefManager @Inject constructor(context: Context) {
         const val SP_PASS = "sp_pass"
     }
 
-    fun clearSharedPref() {
+    fun logoutRemoveToken() {
         editor.remove(SP_TOKEN).apply()
         isLogin = false
     }
 
     var isIntroSp: Boolean
-        get() = prefIntro.getBoolean(SP_INTRO, true)
-        set(value) = editorIntro.putBoolean(SP_INTRO, value).apply()
+        get() = pref.getBoolean(SP_INTRO, true)
+        set(value) = editor.putBoolean(SP_INTRO, value).apply()
 
     var email: String
         get() = String(Base64.decode(pref.getString(SP_EMAIL, ""), 0))

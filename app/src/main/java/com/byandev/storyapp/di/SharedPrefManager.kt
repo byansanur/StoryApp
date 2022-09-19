@@ -29,6 +29,16 @@ class SharedPrefManager @Inject constructor(context: Context) {
         isLogin = false
     }
 
+    fun logoutNotRemember() {
+        editor.remove(SP_USER_ID).apply()
+        editor.remove(SP_NAME).apply()
+        editor.remove(SP_TOKEN).apply()
+        editor.remove(SP_IS_REMEMBER).apply()
+        editor.remove(SP_EMAIL).apply()
+        editor.remove(SP_PASS).apply()
+        isLogin = false
+    }
+
     var isIntroSp: Boolean
         get() = pref.getBoolean(SP_INTRO, true)
         set(value) = editor.putBoolean(SP_INTRO, value).apply()

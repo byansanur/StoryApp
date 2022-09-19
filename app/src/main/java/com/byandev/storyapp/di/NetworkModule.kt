@@ -54,7 +54,9 @@ object NetworkModule {
                 val req = chain.request()
                 val res = chain.proceed(req)
                 if (res.code == 401 || res.code == 403) {
-                    sharedPrefManager.logoutRemoveToken()
+                    if (sharedPrefManager.isRemember)
+                        sharedPrefManager.logoutRemoveToken()
+                    else sharedPrefManager.logoutNotRemember()
                 }
                 res
             }

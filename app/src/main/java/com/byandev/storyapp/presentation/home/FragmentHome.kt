@@ -201,7 +201,9 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
                 dialogLoading(dialog)
                 delay(2000)
                 dialog.dismiss()
-                sharedPrefManager.logoutRemoveToken()
+                if (sharedPrefManager.isRemember)
+                    sharedPrefManager.logoutRemoveToken()
+                else sharedPrefManager.logoutNotRemember()
                 findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToFragmentLogin())
             }
         }

@@ -26,8 +26,14 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.IOException
 import java.net.ConnectException
 import java.net.SocketException
@@ -42,6 +48,18 @@ import java.util.concurrent.TimeoutException
 const val BASE_URL = "https://story-api.dicoding.dev/v1/"
 
 const val PICK_IMAGE = "PICK_IMAGE"
+
+fun convertRequestBody(value: String): RequestBody {
+    return value.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+}
+
+fun convertRequestBody(value: File): MultipartBody.Part {
+    return MultipartBody.Part.createFormData(
+        "photo",
+        value.name,
+        value.asRequestBody("*/*".toMediaTypeOrNull())
+    )
+}
 
 fun handlingError(error: Throwable) : String {
     return when (error) {

@@ -24,8 +24,8 @@ interface ApiServices {
     fun postStories(
         @Part("description") description: RequestBody,
         @Part image: MultipartBody.Part,
-        @Part("lat") lat: RequestBody?,
-        @Part("lon") lon: RequestBody?
+        @Part("lat") lat: RequestBody? = null,
+        @Part("lon") lon: RequestBody? = null
     ) : Single<ResponseBase>
 
     @GET("stories")

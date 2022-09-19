@@ -46,4 +46,5 @@
     <string name="error_in_app">An error occurred in the application</string>
     <string name="failed_get_location">Failed to get location</string>
     <string name="success_get_location">Successful get location</string>
+    <string name="success_add_story">Success! story was added...</string>
 </resources>

@@ -20,6 +20,7 @@
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_dicoding</item>
         <item name="windowSplashScreenAnimationDuration">2000</item>
         <item name="postSplashScreenTheme">@style/Theme.StoryApp</item>
+        <item name="android:theme">@style/Theme.StoryApp</item>
     </style>
 
     <style name="SampleEditTextStyle" parent="Theme.AppCompat.DayNight">
@@ -27,5 +28,9 @@
         <item name="colorControlActivated">@android:color/transparent</item>
         <item name="colorControlHighlight">@android:color/transparent</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/white</item>
     </style>
 </resources>

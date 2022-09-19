@@ -16,6 +16,7 @@ import com.bumptech.glide.load.model.LazyHeaders
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.byandev.storyapp.data.model.Story
 import com.byandev.storyapp.databinding.ItemStoryOtherBinding
+import com.byandev.storyapp.di.GlideApp
 import com.byandev.storyapp.di.SharedPrefManager
 import com.byandev.storyapp.utils.covertTimeToText
 import com.byandev.storyapp.utils.textAsBitmap
@@ -60,7 +61,7 @@ class AdapterStoryPaging @Inject constructor(
                         .addHeader("Authorization", "Bearer ${sharedPrefManager.token}")
                         .build()
                 )
-                Glide.with(root.context)
+                GlideApp.with(root.context)
                     .load(glideUrl)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(imageStory)

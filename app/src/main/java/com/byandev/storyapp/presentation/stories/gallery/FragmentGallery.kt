@@ -1,29 +1,18 @@
 package com.byandev.storyapp.presentation.stories.gallery
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.byandev.storyapp.R
 import com.byandev.storyapp.adapter.ImageGalleryAdapter
-import com.byandev.storyapp.databinding.FragmentCameraBinding
 import com.byandev.storyapp.databinding.FragmentGalleryBinding
-import com.byandev.storyapp.presentation.stories.ActivityStoryForms
 import com.byandev.storyapp.utils.PICK_IMAGE
-import com.byandev.storyapp.utils.getEncoded64ImageStringFromBitmap
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import java.io.File
 
 
@@ -56,9 +45,12 @@ class FragmentGallery : Fragment() {
 
             adapter.setOnItemClickListener {
                 File(it).let { data ->
-                    val intent = Intent(requireContext(), ActivityStoryForms::class.java)
-                    intent.putExtra("file", data.toString())
-                    startActivity(intent)
+                    val navController = findNavController()
+                    navController.previousBackStackEntry?.savedStateHandle?.set(
+                        PICK_IMAGE,
+                        data
+                    )
+                    navController.navigateUp()
                 }
             }
         }

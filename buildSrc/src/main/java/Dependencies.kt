@@ -34,6 +34,7 @@ object Versions {
     const val cameraVersion = "1.1.0-alpha08"
     const val cameraViewVersion = "1.0.0-alpha28"
     const val photoView = "2.3.0"
+    const val compressImg = "3.0.1"
 }
 
 object BuildPlugins {
@@ -87,6 +88,7 @@ object AndroidLibraries {
     const val cameraView = "androidx.camera:camera-view:${Versions.cameraViewVersion}"
     const val cameraExtension = "androidx.camera:camera-extensions:${Versions.cameraViewVersion}"
     const val photoView = "com.github.chrisbanes:PhotoView:${Versions.photoView}"
+    const val compressImg = "id.zelory:compressor:${Versions.compressImg}"
 }
 
 object TestLibraries {

@@ -1,7 +1,10 @@
 package com.byandev.storyapp.utils
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -9,11 +12,20 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import android.util.Base64.NO_PADDING
 import android.util.Base64.encodeToString
+import android.view.View
+import android.widget.Button
+import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.byandev.storyapp.R
 import com.byandev.storyapp.data.model.ErrorBody
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.ByteArrayOutputStream
 import java.io.IOException

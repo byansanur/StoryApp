@@ -1,11 +1,7 @@
 package com.byandev.storyapp.presentation.stories.camera
 
 import android.app.Dialog
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -21,10 +17,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.byandev.storyapp.R
 import com.byandev.storyapp.databinding.FragmentCameraBinding
-import com.byandev.storyapp.presentation.stories.ActivityStoryForms
 import com.byandev.storyapp.utils.PICK_IMAGE
 import com.byandev.storyapp.utils.dialogLoading
-import com.byandev.storyapp.utils.getEncoded64ImageStringFromBitmap
 import com.google.common.util.concurrent.ListenableFuture
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -104,10 +98,15 @@ class FragmentCamera : Fragment() {
                         override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                             Handler(Looper.getMainLooper()).post {
                                 captureImage.isEnabled = true
-                                loading.dismiss()
-                                val intent = Intent(requireContext(), ActivityStoryForms::class.java)
-                                intent.putExtra("file", file.toString())
-                                startActivity(intent)
+                                lifecycleScope.launch {
+                                    loading.dismiss()
+                                    val navController = findNavController()
+                                    navController.previousBackStackEntry?.savedStateHandle?.set(
+                                        PICK_IMAGE,
+                                        file
+                                    )
+                                    navController.navigateUp()
+                                }
 
                             }
 

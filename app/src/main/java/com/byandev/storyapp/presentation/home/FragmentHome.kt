@@ -170,7 +170,7 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
                         return true
                     }
                     R.id.fragmentAdd -> {
-                        findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToFragmentAddStories())
+                        findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToFragmentStoryForm())
                         return true
                     }
                 }

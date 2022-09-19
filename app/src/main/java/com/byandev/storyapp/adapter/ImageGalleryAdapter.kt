@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.byandev.storyapp.databinding.ItemImageBinding
+import com.byandev.storyapp.di.GlideApp
+import java.io.File
 import javax.inject.Inject
 
 
@@ -31,8 +33,8 @@ class ImageGalleryAdapter constructor(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         list[position].let { data ->
-            Glide.with(holder.itemView.context)
-                .load("file:$data")
+            GlideApp.with(holder.itemView.context)
+                .load(File(data))
                 .apply(RequestOptions().override(250, 250))
                 .centerCrop()
                 .into(holder.binding.image)

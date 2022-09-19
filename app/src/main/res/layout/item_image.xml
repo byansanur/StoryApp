@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/image"
+    android:foreground="?attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_dicoding"
+    android:layout_margin="2dp"
+    android:adjustViewBounds="true"
+    android:scaleType="fitXY"
+    android:layout_weight="1"
+    tools:ignore="ContentDescription,UnusedAttribute" />

@@ -50,6 +50,9 @@ dependencies {
     // lottie
     implementation AndroidLibraries.lottieAnimation
 
+    // easy permission
+    implementation AndroidLibraries.easyPermission
+
     // Timber
     implementation AndroidLibraries.timber
 
@@ -58,6 +61,7 @@ dependencies {
 
     // glide
     implementation AndroidLibraries.glideVersion
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
 
     // retrofit
     implementation AndroidLibraries.retrofit
@@ -103,6 +107,18 @@ dependencies {
     implementation AndroidLibraries.navigation
     implementation AndroidLibraries.navigationUi
 
+    // camera
+    implementation AndroidLibraries.cameraCore
+    implementation AndroidLibraries.camera2
+    implementation AndroidLibraries.cameraLifecycle
+    implementation AndroidLibraries.cameraView
+    implementation AndroidLibraries.cameraExtension
+
+    // photoView
+    implementation AndroidLibraries.photoView
+
+    //compress image
+    implementation AndroidLibraries.compressImg
 
     testImplementation TestLibraries.junit
     androidTestImplementation TestLibraries.junitAnroidTest

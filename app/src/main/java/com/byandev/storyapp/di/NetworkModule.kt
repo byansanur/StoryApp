@@ -3,7 +3,6 @@ package com.byandev.storyapp.di
 import com.byandev.storyapp.BuildConfig
 import com.byandev.storyapp.services.ApiServices
 import com.byandev.storyapp.utils.BASE_URL
-import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -55,7 +54,9 @@ object NetworkModule {
                 val req = chain.request()
                 val res = chain.proceed(req)
                 if (res.code == 401 || res.code == 403) {
-                    sharedPrefManager.clearSharedPref()
+                    if (sharedPrefManager.isRemember)
+                        sharedPrefManager.logoutRemoveToken()
+                    else sharedPrefManager.logoutNotRemember()
                 }
                 res
             }

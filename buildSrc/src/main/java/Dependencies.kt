@@ -10,6 +10,7 @@ object Versions {
     const val junitAnroidTest = "1.1.3"
     const val espressoCoreAnroidTest = "3.4.0"
     const val glideVersion = "4.12.0"
+    const val glideKaptVersion = "4.4.0"
     const val hiltVersion = "2.38.1"
     const val hiltAndroidXVersion = "1.0.0-alpha03"
     const val navVersion = "2.5.1"
@@ -29,6 +30,11 @@ object Versions {
     const val recyclerViews = "1.2.1"
     const val circleImageViews = "3.1.0"
     const val lottie = "3.4.1"
+    const val easyPermission = "1.0.0"
+    const val cameraVersion = "1.1.0-alpha08"
+    const val cameraViewVersion = "1.0.0-alpha28"
+    const val photoView = "2.3.0"
+    const val compressImg = "3.0.1"
 }
 
 object BuildPlugins {
@@ -48,6 +54,7 @@ object AndroidLibraries {
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerViews}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val glideVersion = "com.github.bumptech.glide:glide:${Versions.glideVersion}"
+    const val kaptGlide = "com.github.bumptech.glide:compiler:${Versions.glideKaptVersion}"
     const val hilt = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
     const val hiltKapt = "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
     const val hiltAndroidX = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hiltAndroidXVersion}"
@@ -74,6 +81,14 @@ object AndroidLibraries {
     const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreenVersion}"
     const val circleImageView = "de.hdodenhof:circleimageview:${Versions.circleImageViews}"
     const val lottieAnimation = "com.airbnb.android:lottie:${Versions.lottie}"
+    const val easyPermission = "com.vmadalin:easypermissions-ktx:${Versions.easyPermission}"
+    const val cameraCore = "androidx.camera:camera-core:${Versions.cameraVersion}"
+    const val camera2 = "androidx.camera:camera-camera2:${Versions.cameraVersion}"
+    const val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.cameraVersion}"
+    const val cameraView = "androidx.camera:camera-view:${Versions.cameraViewVersion}"
+    const val cameraExtension = "androidx.camera:camera-extensions:${Versions.cameraViewVersion}"
+    const val photoView = "com.github.chrisbanes:PhotoView:${Versions.photoView}"
+    const val compressImg = "id.zelory:compressor:${Versions.compressImg}"
 }
 
 object TestLibraries {
@@ -87,7 +102,7 @@ object ConfigData {
     const val applicationId = "com.byandev.storyapp"
     const val compileSdkVersion = 32
     const val buildToolsVersion = "30.0.3"
-    const val minSdkVersion = 21
+    const val minSdkVersion = 23
     const val targetSdkVersion = 32
     const val versionCodes = 1
     const val versionName = "1.0.0"

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -65,16 +66,29 @@ class FragmentLogin : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
 
+
+
         binding.apply {
             tvRegister.setOnClickListener {
                 findNavController().navigate(FragmentLoginDirections.actionFragmentLoginToFragmentRegister())
             }
-            edtEmail.onTextChanged { emailUser = it }
-            edtPassword.onTextChanged { passwordUser = it }
+
+            if (sharedPref.isRemember) {
+                edtEmail.setText(sharedPref.email)
+                edtPassword.setText(sharedPref.userKey)
+                cbRemember.isChecked = sharedPref.isRemember
+
+                emailUser = sharedPref.email
+                passwordUser = sharedPref.userKey
+                isRemembered = sharedPref.isRemember
+            }
+            edtEmail.doOnTextChanged { text, _, _, _ ->  emailUser = text.toString() }
+            edtPassword.doOnTextChanged { text, _, _, _ -> passwordUser = text.toString() }
+
             cbRemember.setOnCheckedChangeListener { _, isChecked ->
                 isRemembered = isChecked
-                Log.e(TAG, "onViewCreated: $isRemembered")
             }
+
             btnLogin.setOnClickListener {
                 if (emailUser.isNotEmpty() && passwordUser.length >= 6)
                     loginUser()
@@ -96,10 +110,9 @@ class FragmentLogin : Fragment() {
             delay(5000)
             sharedViewModel.loginUsers(login).observe(viewLifecycleOwner) {
                 when(it) {
-                    is Resources.Loading -> Log.e(TAG, "registerNewUser: loading")
+                    is Resources.Loading -> {}
                     is Resources.Success -> {
                         dialog.dismiss()
-                        Log.e(TAG, "registerNewUser: success ${Gson().toJson(it.data)}")
                         loginSaved(it.data?.loginResult)
                         val nav = FragmentLoginDirections.actionFragmentLoginToFragmentHome()
                         findNavController().navigate(nav)
@@ -108,7 +121,6 @@ class FragmentLogin : Fragment() {
                     }
                     is Resources.Error -> {
                         dialog.dismiss()
-                        Log.e(TAG, "registerNewUser: error cause ${it.message}")
                         Toast.makeText(requireContext(), "Error:${it.message}", Toast.LENGTH_SHORT)
                             .show()
                     }
@@ -120,6 +132,8 @@ class FragmentLogin : Fragment() {
     private fun loginSaved(dataLogin: LoginResult?) {
         sharedPref.isLogin = true
         sharedPref.isRemember = isRemembered
+        sharedPref.email = emailUser
+        sharedPref.userKey = passwordUser
         sharedPref.userId = dataLogin?.userId.toString()
         sharedPref.userName = dataLogin?.name.toString()
         sharedPref.token = dataLogin?.token.toString()

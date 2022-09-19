@@ -20,6 +20,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.flow.map
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
@@ -77,4 +79,31 @@ class SharedViewModel @Inject constructor(
     fun getListStory(location: Int) = dataRepository.getListStory(location)
         .map { data -> data.map { it } }
         .cachedIn(viewModelScope)
+
+    fun postStories(
+        description: RequestBody,
+        photo: MultipartBody.Part,
+        lat: RequestBody?,
+        lon: RequestBody?
+    ) : LiveData<Resources<ResponseBase>> {
+        val output = MutableLiveData<Resources<ResponseBase>>()
+        if (utilsConnect.isConnectedToInternet()) {
+            compositeDisposable.add(
+                servicesRepository.postStories(
+                    description, photo, lat, lon
+                ).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { output.postValue(Resources.Loading()) }
+                    .subscribe({
+                        if (!it.error) output.postValue(Resources.Success(it))
+                        else output.postValue(Resources.Error(it.message, null))
+                    }, {
+                        output.postValue(Resources.Error(handlingError(it), null))
+                    })
+            )
+        } else {
+            output.postValue(Resources.Error("No internet connection"))
+        }
+        return output
+    }
 }

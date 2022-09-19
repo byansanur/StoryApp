@@ -105,17 +105,17 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
     }
 
     private fun callStory() {
+        binding.swipeRefresh.isRefreshing = true
         lifecycleScope.launchWhenCreated {
             dialogLoading(dialog)
             delay(2000)
-
+            dialog.dismiss()
+            binding.swipeRefresh.isRefreshing = false
             sharedViewModel.getListStory(0)
                 .distinctUntilChanged()
                 .collectLatest { valueData ->
                     adapterStoryPaging.submitData(valueData)
-                    binding.swipeRefresh.isRefreshing = false
                 }
-            dialog.dismiss()
         }
         addLoadAdapterOther()
     }
@@ -129,8 +129,6 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
                     }
                     is LoadState.NotLoading -> {
                         Log.e(TAG, "addLoadAdapterOther: not loading state")
-                        dialog.dismiss()
-                        binding.rvStoryOther.isVisible = adapterStoryPaging.itemCount > 1
                     }
                     is LoadState.Error -> {
                         val e = it.refresh as LoadState.Error
@@ -172,7 +170,7 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
                         return true
                     }
                     R.id.fragmentAdd -> {
-                        findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToFragmentAddStories())
+                        findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToFragmentStoryForm())
                         return true
                     }
                 }

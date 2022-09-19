@@ -3,6 +3,7 @@ package com.byandev.storyapp.services
 import com.byandev.storyapp.data.model.*
 import io.reactivex.rxjava3.core.Single
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiServices {
@@ -21,10 +22,10 @@ interface ApiServices {
     @Multipart
     @POST("stories")
     fun postStories(
-        @Part("description") description: String,
+        @Part("description") description: RequestBody,
         @Part image: MultipartBody.Part,
-        @Part("lat") lat: Float?,
-        @Part("lon") lon: Float?
+        @Part("lat") lat: RequestBody? = null,
+        @Part("lon") lon: RequestBody? = null
     ) : Single<ResponseBase>
 
     @GET("stories")

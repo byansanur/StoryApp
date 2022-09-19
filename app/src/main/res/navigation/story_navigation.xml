@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_fragmentHome_to_fragmentStoryForm"
             app:destination="@id/fragmentStoryForm" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentDetailStory"
+            app:destination="@id/fragmentDetailStory" />
     </fragment>
     <fragment
         android:id="@+id/fragmentIntroPermission"
@@ -82,4 +85,13 @@
         android:name="com.byandev.storyapp.presentation.stories.FragmentAddStories"
         android:label="fragment_add_stories"
         tools:layout="@layout/fragment_add_stories" />
+    <fragment
+        android:id="@+id/fragmentDetailStory"
+        android:name="com.byandev.storyapp.presentation.details.FragmentDetailStory"
+        android:label="fragment_detail_story"
+        tools:layout="@layout/fragment_detail_story" >
+        <argument
+            android:name="story"
+            app:argType="com.byandev.storyapp.data.model.Story" />
+    </fragment>
 </navigation>

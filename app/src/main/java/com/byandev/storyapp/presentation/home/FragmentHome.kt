@@ -124,11 +124,14 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
         if (utilsConnect.isConnectedToInternet()) {
             adapterStoryPaging.addLoadStateListener {
                 when(it.source.refresh) {
-                    is LoadState.Loading -> {
-                        Log.e(TAG, "addLoadAdapterOther: loading state")
-                    }
+                    is LoadState.Loading -> {}
                     is LoadState.NotLoading -> {
-                        Log.e(TAG, "addLoadAdapterOther: not loading state")
+                        if (adapterStoryPaging.itemCount < 1)
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.no_data),
+                                Toast.LENGTH_SHORT
+                            ).show()
                     }
                     is LoadState.Error -> {
                         val e = it.refresh as LoadState.Error
@@ -144,7 +147,6 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
                             }
                             else -> "Error ${e.error.message}"
                         }
-                        Log.e(TAG, "addLoadAdapterOther: error state $msgErr")
                     }
                 }
             }
@@ -186,6 +188,8 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
     }
 
     override fun storyClicked(story: Story) {
+        val nav = FragmentHomeDirections.actionFragmentHomeToFragmentDetailStory(story)
+        findNavController().navigate(nav)
     }
 
 }

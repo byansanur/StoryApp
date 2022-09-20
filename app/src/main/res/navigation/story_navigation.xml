@@ -12,12 +12,19 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentRegister"
-            app:destination="@id/fragmentRegister" />
+            app:destination="@id/fragmentRegister"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right"/>
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentHome"
             app:destination="@id/fragmentHome"
             app:popUpTo="@id/fragmentHome"
-            app:popUpToInclusive="true"/>
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
@@ -33,16 +40,32 @@
             android:id="@+id/action_fragmentHome_to_fragmentLogin"
             app:destination="@id/fragmentLogin"
             app:popUpTo="@id/fragmentLogin"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right"/>
         <action
             android:id="@+id/action_fragmentHome_to_fragmentIntroPermission"
-            app:destination="@id/fragmentIntroPermission" />
+            app:destination="@id/fragmentIntroPermission"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right"/>
         <action
             android:id="@+id/action_fragmentHome_to_fragmentStoryForm"
-            app:destination="@id/fragmentStoryForm" />
+            app:destination="@id/fragmentStoryForm"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right"/>
         <action
             android:id="@+id/action_fragmentHome_to_fragmentDetailStory"
-            app:destination="@id/fragmentDetailStory" />
+            app:destination="@id/fragmentDetailStory"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentIntroPermission"
@@ -53,7 +76,11 @@
             android:id="@+id/action_fragmentIntroPermission_to_fragmentHome"
             app:destination="@id/fragmentHome"
             app:popUpTo="@id/fragmentHome"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentCamera"
@@ -72,7 +99,11 @@
         tools:layout="@layout/fragment_story_form" >
         <action
             android:id="@+id/action_fragmentStoryForm_to_fragmentAddStories"
-            app:destination="@id/fragmentAddStories" />
+            app:destination="@id/fragmentAddStories"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentAddStories"

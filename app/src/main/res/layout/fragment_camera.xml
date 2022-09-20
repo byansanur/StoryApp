@@ -18,26 +18,39 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clAction"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible"
-        android:background="@drawable/oval"
-        android:layout_marginBottom="30dp"
+        android:paddingVertical="30dp"
+        android:background="#90000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/captureImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            app:srcCompat="@drawable/ic_camera"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_camera"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/flipCamera"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginVertical="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/captureImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_round_flip_camera_android_24"
             tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

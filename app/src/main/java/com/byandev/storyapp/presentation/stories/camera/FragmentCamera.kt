@@ -43,7 +43,6 @@ class FragmentCamera : Fragment() {
     private var cameraProvider: ProcessCameraProvider? = null
     private var imageCapture: ImageCapture? = null
     private var lensFacing: Int? = CameraSelector.LENS_FACING_BACK
-    private var flashing: Int? = ImageCapture.FLASH_MODE_OFF
 
     private lateinit var loading: Dialog
     
@@ -82,6 +81,18 @@ class FragmentCamera : Fragment() {
     private fun listener() {
         loading = Dialog(requireContext())
         binding.apply {
+            flipCamera.setOnClickListener {
+                var lens = 0
+                if (lensFacing == CameraSelector.LENS_FACING_BACK) {
+                    lens = CameraSelector.LENS_FACING_FRONT
+                } else if (lensFacing == CameraSelector.LENS_FACING_FRONT){
+                    lens = CameraSelector.LENS_FACING_BACK
+                }
+                lensFacing = lens
+                startCamera(lens)
+
+            }
+
             captureImage.setOnClickListener {
                 captureImage.isEnabled = false
                 dialogLoading(loading)
@@ -118,7 +129,7 @@ class FragmentCamera : Fragment() {
                                 loading.dismiss()
                                 exception.message?.let {
                                     Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-                                    Log.e(TAG, "onError: $it", )
+                                    Log.e(TAG, "onError: $it")
                                 }
                             }
 
@@ -160,7 +171,10 @@ class FragmentCamera : Fragment() {
         )
         val builder = ImageCapture.Builder()
 
-        imageCapture = builder.setFlashMode(ImageCapture.FLASH_MODE_OFF).build()
+        imageCapture = builder
+            .setFlashMode(ImageCapture.FLASH_MODE_OFF)
+            .build()
+
         preview.setSurfaceProvider(binding.previewView.surfaceProvider)
         try {
             cameraProvider.unbindAll()

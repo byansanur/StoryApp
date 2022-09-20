@@ -1,6 +1,9 @@
 package com.byandev.storyapp.services
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.byandev.storyapp.data.model.*
+import com.byandev.storyapp.data.paging_source.StoryPagingSource
 import io.reactivex.rxjava3.core.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -9,14 +12,23 @@ import javax.inject.Singleton
 
 class ServicesRepository @Inject constructor(
     private val apiServices: ApiServices
-) : ServicesImpl {
-    override fun postRegister(request: Register): Single<ResponseBase> =
+) {
+    fun postRegister(request: Register): Single<ResponseBase> =
         apiServices.postRegisterNewUser(request)
 
-    override fun postLogin(request: Login): Single<ResponseLogin> =
+    fun postLogin(request: Login): Single<ResponseLogin> =
         apiServices.postLoginUser(request)
 
-    override fun postStories(
+    fun getListStory(location: Int) =
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { StoryPagingSource(apiServices = apiServices, location = location) }
+        ).flow
+
+    fun postStories(
         description: RequestBody,
         photo: MultipartBody.Part,
         lat: RequestBody?,

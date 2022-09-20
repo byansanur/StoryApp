@@ -7,8 +7,3 @@ data class IntroItem(
     val image : Int,
     val description : String
 )
-
-data class PostLocation(
-    var latitude: String,
-    var longitude: String
-) : Serializable

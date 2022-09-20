@@ -1,6 +1,5 @@
 package com.byandev.storyapp.presentation.stories.gallery
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +36,7 @@ class FragmentGallery : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = ImageGalleryAdapter(requireContext())
+        adapter = ImageGalleryAdapter()
         subscribeToObservers()
         binding.apply {
             recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)

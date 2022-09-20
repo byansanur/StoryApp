@@ -81,6 +81,8 @@ class FragmentStoryForm : Fragment() {
     private fun listener() {
         binding.apply {
 
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+
             edtCaption.doOnTextChanged { text, start, before, count ->
                 description = text.toString()
             }

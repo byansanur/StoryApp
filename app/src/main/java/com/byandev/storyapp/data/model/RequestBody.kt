@@ -20,7 +20,3 @@ data class Login(
     @Json(name = "password")
     var password: String
 )
-
-data class AddStory(
-    var description: String,
-)

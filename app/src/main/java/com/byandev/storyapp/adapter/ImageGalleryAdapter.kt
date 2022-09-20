@@ -13,9 +13,7 @@ import java.io.File
 import javax.inject.Inject
 
 
-class ImageGalleryAdapter constructor(
-    private val context: Context
-) : RecyclerView.Adapter<ImageGalleryAdapter.Holder>() {
+class ImageGalleryAdapter : RecyclerView.Adapter<ImageGalleryAdapter.Holder>() {
 
     private var list: MutableList<String> = mutableListOf()
 

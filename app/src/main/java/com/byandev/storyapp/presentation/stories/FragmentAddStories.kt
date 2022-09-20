@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavHostController
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.byandev.storyapp.R
 import com.byandev.storyapp.databinding.FragmentAddStoriesBinding
@@ -40,6 +41,7 @@ class FragmentAddStories : Fragment() {
 
     private fun setupViewPager() {
         binding.apply {
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
             viewPager.offscreenPageLimit = 2
             viewPager.isUserInputEnabled = false
             viewPager.adapter = AddStoryFragmentStateAdapter(this@FragmentAddStories)

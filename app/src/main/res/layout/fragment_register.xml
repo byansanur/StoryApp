@@ -30,6 +30,7 @@
             android:textStyle="bold"
             android:textColor="@color/blue_dicoding"
             android:textSize="22sp"
+            android:alpha="0"
             app:layout_constraintEnd_toEndOf="@+id/imgApp"
             app:layout_constraintStart_toStartOf="@id/imgApp"
             app:layout_constraintTop_toBottomOf="@id/imgApp" />
@@ -44,6 +45,7 @@
             android:textColor="@color/blue_dicoding"
             android:textSize="16sp"
             android:textAlignment="center"
+            android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
@@ -58,6 +60,7 @@
             android:textColor="@color/blue_dicoding"
             android:textSize="22sp"
             android:textAlignment="center"
+            android:alpha="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvWelcome2" />
 
@@ -116,6 +119,7 @@
             android:background="@color/blue_dicoding"
             android:textColor="@color/white"
             android:backgroundTintMode="src_atop"
+            android:alpha="0"
             app:layout_constraintTop_toBottomOf="@id/edtPassword"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -127,6 +131,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/sign_in_here"
             android:textColor="@color/black"
+            android:alpha="0"
             app:layout_constraintTop_toBottomOf="@id/btnRegister"
             app:layout_constraintBottom_toBottomOf="parent"
             />

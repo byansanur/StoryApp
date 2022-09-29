@@ -103,7 +103,14 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
 
             swipeRefresh.setOnRefreshListener { callStory() }
 
-            btnMaps.setOnClickListener { findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToMapsFragment()) }
+            btnMaps.setOnClickListener {
+                // TODO :
+                //  - check permission location,
+                //  - if un-checked request permission,
+                //  - permission accepted navigating fragment
+
+                findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToMapsFragment())
+            }
         }
         callStory()
     }

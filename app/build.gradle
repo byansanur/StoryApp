@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -17,6 +18,13 @@ android {
         versionName ConfigData.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        resValue "string", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
+
+
     }
 
     buildTypes {
@@ -41,11 +49,13 @@ dependencies {
 
     implementation AndroidLibraries.coreKtx
     implementation AndroidLibraries.appCompat
+    implementation AndroidLibraries.legacySupportV4
     implementation AndroidLibraries.materialDesign
     implementation AndroidLibraries.constraintLayout
     implementation AndroidLibraries.cardView
     implementation AndroidLibraries.recyclerView
     implementation AndroidLibraries.circleImageView
+    implementation AndroidLibraries.swipeRefresh
 
     // lottie
     implementation AndroidLibraries.lottieAnimation
@@ -61,7 +71,11 @@ dependencies {
 
     // glide
     implementation AndroidLibraries.glideVersion
-    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+    kapt AndroidLibraries.kaptGlide
+
+    // map
+    implementation AndroidLibraries.playServiceMaps
+    implementation AndroidLibraries.playServiceLocation
 
     // retrofit
     implementation AndroidLibraries.retrofit
@@ -98,7 +112,6 @@ dependencies {
 
     // hilt
     implementation AndroidLibraries.hilt
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt AndroidLibraries.hiltKapt
     implementation AndroidLibraries.hiltAndroidX
     kapt AndroidLibraries.hiltAndroidXKapt

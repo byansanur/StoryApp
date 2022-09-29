@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.byandev.storyapp.data.model.Login
-import com.byandev.storyapp.data.model.Register
-import com.byandev.storyapp.data.model.ResponseBase
-import com.byandev.storyapp.data.model.ResponseLogin
+import com.byandev.storyapp.data.model.*
 import com.byandev.storyapp.di.UtilsConnect
 import com.byandev.storyapp.services.ServicesRepository
 import com.byandev.storyapp.utils.Resources
@@ -77,6 +74,26 @@ class SharedViewModel @Inject constructor(
     fun getListStory(location: Int) = servicesRepository.getListStory(location)
         .map { data -> data.map { it } }
         .cachedIn(viewModelScope)
+
+    fun getListStoryLocation() : LiveData<Resources<ResponseAllStories>> {
+        val output = MutableLiveData<Resources<ResponseAllStories>>()
+        if (utilsConnect.isConnectedToInternet()) {
+            compositeDisposable.add(
+                servicesRepository.getStoryLocation()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { output.postValue(Resources.Loading()) }
+                    .subscribe({
+                        output.postValue(Resources.Success(it))
+                    }, {
+                        output.postValue(Resources.Error(handlingError(it), null))
+                    })
+            )
+        } else {
+            output.postValue(Resources.Error("No internet connection", null))
+        }
+        return output
+    }
 
     fun postStories(
         description: RequestBody,

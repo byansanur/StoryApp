@@ -1,5 +1,6 @@
 package com.byandev.storyapp.presentation.home
 
+import android.Manifest
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Build
@@ -28,6 +29,8 @@ import com.byandev.storyapp.di.UtilsConnect
 import com.byandev.storyapp.presentation.SharedViewModel
 import com.byandev.storyapp.utils.dialogLoading
 import com.byandev.storyapp.utils.handlingError
+import com.vmadalin.easypermissions.EasyPermissions
+import com.vmadalin.easypermissions.annotations.AfterPermissionGranted
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
@@ -37,11 +40,13 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
+
 @AndroidEntryPoint
 class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
 
     companion object {
         private const val TAG = "FragmentHome"
+        const val REQUEST_LOCATION_PERMISSION = 1001
     }
 
     private var _binding: FragmentHomeBinding? = null
@@ -102,15 +107,6 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
             rvStoryOther.layoutManager = LinearLayoutManager(requireContext())
 
             swipeRefresh.setOnRefreshListener { callStory() }
-
-            btnMaps.setOnClickListener {
-                // TODO :
-                //  - check permission location,
-                //  - if un-checked request permission,
-                //  - permission accepted navigating fragment
-
-                findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToMapsFragment())
-            }
         }
         callStory()
     }
@@ -180,10 +176,42 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
                         findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToFragmentStoryForm())
                         return true
                     }
+                    R.id.maps -> {
+                        // TODO :
+                        //  - check permission location,
+                        //  - if un-checked request permission,
+                        //  - permission accepted navigating fragment
+                        checkLocationPermission()
+                        return true
+                    }
                 }
                 return false
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    @AfterPermissionGranted(REQUEST_LOCATION_PERMISSION)
+    private fun checkLocationPermission()  {
+        if (EasyPermissions.hasPermissions(requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToMapsFragment())
+        } else {
+            EasyPermissions.requestPermissions(requireActivity(), "Allow the app to access the location",
+                REQUEST_LOCATION_PERMISSION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this)
     }
 
     private fun dialogLogout() {

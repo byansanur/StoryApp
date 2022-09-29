@@ -35,5 +35,10 @@ interface ApiServices {
         @Query("location") location: Int?
     ) : ResponseAllStories
 
+    @GET("stories")
+    fun getStoriesLocation(
+        @Query("location") location: Int = 1
+    ) : Single<ResponseAllStories>
+
 
 }

@@ -37,6 +37,7 @@ object Versions {
     const val photoView = "2.3.0"
     const val compressImg = "3.0.1"
     const val playServiceMapVersion = "18.1.0"
+    const val playServiceLocationVersion = "18.0.0"
     const val mapsPlatform = "2.0.0"
     const val swipeRefreshVersion = "1.1.0"
 }
@@ -96,6 +97,7 @@ object AndroidLibraries {
     const val photoView = "com.github.chrisbanes:PhotoView:${Versions.photoView}"
     const val compressImg = "id.zelory:compressor:${Versions.compressImg}"
     const val playServiceMaps = "com.google.android.gms:play-services-maps:${Versions.playServiceMapVersion}"
+    const val playServiceLocation = "com.google.android.gms:play-services-location:${Versions.playServiceLocationVersion}"
     const val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshVersion}"
 }
 

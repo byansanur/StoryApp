@@ -23,7 +23,8 @@ class ServicesRepository @Inject constructor(
         Pager(
             config = PagingConfig(
                 pageSize = 10,
-                enablePlaceholders = true
+                enablePlaceholders = true,
+                initialLoadSize = 5
             ),
             pagingSourceFactory = { StoryPagingSource(apiServices = apiServices, location = location) }
         ).flow
@@ -40,4 +41,8 @@ class ServicesRepository @Inject constructor(
             lat = lat,
             lon = lon
         )
+
+    fun getStoryLocation() : Single<ResponseAllStories> {
+        return apiServices.getStoriesLocation()
+    }
 }

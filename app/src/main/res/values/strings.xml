@@ -50,7 +50,10 @@
     <string name="sign_in_here">Sign In here</string>
     <string name="register">Register</string>
     <string name="sign_up">Sign up</string>
-    <string name="flash_on">flash on</string>
-    <string name="flash_auto">flash auto</string>
-    <string name="flash_off">flash off</string>
+    <string name="maps">maps</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="your_location">Your location</string>
 </resources>

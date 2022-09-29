@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             Log.e("TAG", "onDestinationChanged: "+destination.label);
 
-            if (destination.id == R.id.fragmentHome) {
+            if (destination.id == R.id.fragmentHome || destination.id == R.id.mapsFragment) {
                 binding.toolbar.visibility = View.VISIBLE
                 setSupportActionBar(binding.toolbar)
             } else {

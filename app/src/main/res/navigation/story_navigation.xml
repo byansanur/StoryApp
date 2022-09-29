@@ -68,7 +68,13 @@
             app:popExitAnim="@anim/exit_to_right"/>
         <action
             android:id="@+id/action_fragmentHome_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
+            app:destination="@id/mapsFragment"
+            app:popUpTo="@id/mapsFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentIntroPermission"

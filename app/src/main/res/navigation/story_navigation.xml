@@ -132,5 +132,9 @@
         android:id="@+id/mapsFragment"
         android:name="com.byandev.storyapp.presentation.map_view.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_fragmentDetailStory"
+            app:destination="@id/fragmentDetailStory" />
+    </fragment>
 </navigation>

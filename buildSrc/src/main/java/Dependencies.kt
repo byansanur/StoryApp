@@ -37,7 +37,7 @@ object Versions {
     const val photoView = "2.3.0"
     const val compressImg = "3.0.1"
     const val playServiceMapVersion = "18.1.0"
-    const val playServiceLocationVersion = "18.0.0"
+    const val playServiceLocationVersion = "20.0.0"
     const val mapsPlatform = "2.0.0"
     const val swipeRefreshVersion = "1.1.0"
 }

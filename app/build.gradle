@@ -68,8 +68,7 @@ dependencies {
 
     // map
     implementation AndroidLibraries.playServiceMaps
-//    implementation AndroidLibraries.playServiceLocation
-    implementation 'com.google.android.gms:play-services-location:20.0.0'
+    implementation AndroidLibraries.playServiceLocation
 
     // retrofit
     implementation AndroidLibraries.retrofit

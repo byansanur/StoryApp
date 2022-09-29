@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -23,10 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -54,9 +52,9 @@ class MapsFragment : Fragment() {
 
         gMap.isMyLocationEnabled = true
         val a = LatLng(myLat.toDouble(), myLon.toDouble())
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(a, 15f))
+        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(a, 10f))
         gMap.animateCamera(CameraUpdateFactory.zoomIn())
-        gMap.animateCamera(CameraUpdateFactory.zoomTo(15f), 1000, null);
+        gMap.animateCamera(CameraUpdateFactory.zoomTo(10f), 1000, null);
 
         getStoryLocation()
     }
@@ -132,6 +130,12 @@ class MapsFragment : Fragment() {
                                     }
 
                                 })
+
+                            gMap.setOnMarkerClickListener { _ ->
+                                val nav = MapsFragmentDirections.actionMapsFragmentToFragmentDetailStory(it.data.listStory[i])
+                                findNavController().navigate(nav)
+                                true
+                            }
                         }
                     }
                     is Resources.Error -> {}

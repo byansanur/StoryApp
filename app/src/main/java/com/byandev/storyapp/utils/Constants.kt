@@ -12,6 +12,7 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.byandev.storyapp.R
 import com.byandev.storyapp.data.model.ResponseBase
+import com.byandev.storyapp.data.model.Story
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -147,3 +148,13 @@ fun glideUrls(
             .build()
     )
 }
+
+private fun <T> getItemImpl(list: List<T>, item: T): Int {
+    list.forEachIndexed { index, it ->
+        if (it == item)
+            return index
+    }
+    return -1
+}
+
+fun List<Story>.getItemStory(story: Story) = getItemImpl(this, story)

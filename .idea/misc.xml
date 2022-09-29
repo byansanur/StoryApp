@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/bg_card_un_active.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_selector_card_view.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/default_indicator.xml" value="0.1635" />
+        <entry key="app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.1635" />
         <entry key="app/src/main/res/drawable/ic_camera_permission.xml" value="0.1635" />
         <entry key="app/src/main/res/drawable/ic_file_permission.xml" value="0.1635" />

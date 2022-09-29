@@ -3,6 +3,7 @@ package com.byandev.storyapp.presentation.map_view
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.core.view.MenuHost
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.byandev.storyapp.R
+import com.byandev.storyapp.data.model.Story
 import com.byandev.storyapp.databinding.FragmentMapsBinding
 import com.byandev.storyapp.di.LocationUtils
 import com.byandev.storyapp.presentation.SharedViewModel
@@ -24,7 +26,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -38,6 +42,7 @@ class MapsFragment : Fragment() {
     private val viewModel: SharedViewModel by viewModels()
 
     private lateinit var gMap: GoogleMap
+    private var listStory: MutableList<Story> = arrayListOf()
 
     private var myLat = ""
     private var myLon = ""
@@ -70,19 +75,22 @@ class MapsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupMenuHost()
+        if (savedInstanceState == null) {
+            setupMenuHost()
 
-        if (locationUtils.canGetLocation) {
-            if (!locationUtils.isGPSEnabled)
-                Toast.makeText(requireContext(), "Please activate your gps!", Toast.LENGTH_SHORT).show()
-            else {
-                myLat = getLatitude()
-                myLon = getLongitude()
+            if (locationUtils.canGetLocation) {
+                if (!locationUtils.isGPSEnabled)
+                    Toast.makeText(requireContext(), "Please activate your gps!", Toast.LENGTH_SHORT).show()
+                else {
+                    myLat = getLatitude()
+                    myLon = getLongitude()
+                }
             }
-        }
 
-        val mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+            val mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment?
+            mapFragment?.getMapAsync(callback)
+
+        }
     }
 
     private fun getStoryLocation() {
@@ -91,12 +99,13 @@ class MapsFragment : Fragment() {
                 when(it) {
                     is Resources.Loading -> {}
                     is Resources.Success -> {
-                        for (i in it.data?.listStory?.indices!!) {
-                            val latLon = LatLng(it.data.listStory[i].lat!!, it.data.listStory[i].lon!!)
+                        listStory = it.data?.listStory?.toMutableList() ?: arrayListOf()
+                        for (story in it.data?.listStory!!) {
+                            val latLon = LatLng(story.lat!!, story.lon!!)
 
                             Glide.with(requireContext())
                                 .asBitmap()
-                                .load(it.data.listStory[i].photoUrl)
+                                .load(story.photoUrl)
                                 .dontTransform()
                                 .centerCrop()
                                 .into(object : SimpleTarget<Bitmap>() {
@@ -115,30 +124,42 @@ class MapsFragment : Fragment() {
 
                                         gMap.addMarker(MarkerOptions()
                                             .position(latLon)
-                                            .title("${it.data.listStory[i].name} - ${it.data.listStory[i].description}")
+                                            .title("${story.name} - ${story.description}")
                                             .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
                                             .anchor(0.5f, 1F)
-                                        )
+
+                                        )?.tag = story
                                     }
 
                                     override fun onLoadFailed(errorDrawable: Drawable?) {
                                         super.onLoadFailed(errorDrawable)
                                         gMap.addMarker(MarkerOptions()
                                             .position(latLon)
-                                            .title("${it.data.listStory[i].name} - ${it.data.listStory[i].description}")
+                                            .title("${story.name} - ${story.description}")
                                         )
                                     }
 
                                 })
 
-                            gMap.setOnMarkerClickListener { _ ->
-                                val nav = MapsFragmentDirections.actionMapsFragmentToFragmentDetailStory(it.data.listStory[i])
-                                findNavController().navigate(nav)
-                                true
-                            }
+                        }
+                        gMap.setOnMarkerClickListener { maker ->
+                            val storyTag = maker.tag
+                            Log.e("TAG", "getStoryLocation: tag id marker $storyTag")
+                            val nav = MapsFragmentDirections.actionMapsFragmentToFragmentDetailStory(
+                                storyTag as Story
+                            )
+                            findNavController().navigate(nav)
+                            false
                         }
                     }
-                    is Resources.Error -> {}
+                    is Resources.Error -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "Error - ${it.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        findNavController().navigateUp()
+                    }
                 }
             }
         }

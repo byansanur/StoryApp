@@ -3,6 +3,7 @@ object Versions {
     const val kotlin = "1.6.21"
     const val timber = "4.7.1"
     const val appCompat = "1.5.1"
+    const val legacySupport = "1.0.0"
     const val coreKtx = "1.8.0"
     const val material = "1.6.1"
     const val constraintLayout = "2.1.4"
@@ -10,7 +11,7 @@ object Versions {
     const val junitAnroidTest = "1.1.3"
     const val espressoCoreAnroidTest = "3.4.0"
     const val glideVersion = "4.12.0"
-    const val glideKaptVersion = "4.4.0"
+    const val glideKaptVersion = "4.12.0"
     const val hiltVersion = "2.38.1"
     const val hiltAndroidXVersion = "1.0.0-alpha03"
     const val navVersion = "2.5.1"
@@ -35,6 +36,8 @@ object Versions {
     const val cameraViewVersion = "1.0.0-alpha28"
     const val photoView = "2.3.0"
     const val compressImg = "3.0.1"
+    const val playServiceMapVersion = "18.1.0"
+    const val swipeRefreshVersion = "1.1.0"
 }
 
 object BuildPlugins {
@@ -47,6 +50,7 @@ object BuildPlugins {
 object AndroidLibraries {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val legacySupportV4 = "androidx.legacy:legacy-support-v4${Versions.legacySupport}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val materialDesign = "com.google.android.material:material:${Versions.material}"
@@ -89,6 +93,8 @@ object AndroidLibraries {
     const val cameraExtension = "androidx.camera:camera-extensions:${Versions.cameraViewVersion}"
     const val photoView = "com.github.chrisbanes:PhotoView:${Versions.photoView}"
     const val compressImg = "id.zelory:compressor:${Versions.compressImg}"
+    const val playServiceMaps = "com.google.android.gms:play-services-maps:${Versions.playServiceMapVersion}"
+    const val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshVersion}"
 }
 
 object TestLibraries {

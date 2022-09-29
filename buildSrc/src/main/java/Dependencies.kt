@@ -37,6 +37,7 @@ object Versions {
     const val photoView = "2.3.0"
     const val compressImg = "3.0.1"
     const val playServiceMapVersion = "18.1.0"
+    const val mapsPlatform = "2.0.0"
     const val swipeRefreshVersion = "1.1.0"
 }
 
@@ -45,12 +46,13 @@ object BuildPlugins {
     const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val hilt = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hiltVersion}"
     const val nav = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navVersion}"
+    const val mapsPlatform = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:${Versions.mapsPlatform}"
 }
 
 object AndroidLibraries {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-    const val legacySupportV4 = "androidx.legacy:legacy-support-v4${Versions.legacySupport}"
+    const val legacySupportV4 = "androidx.legacy:legacy-support-v4:${Versions.legacySupport}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val materialDesign = "com.google.android.material:material:${Versions.material}"

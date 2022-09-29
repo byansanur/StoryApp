@@ -102,6 +102,8 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
             rvStoryOther.layoutManager = LinearLayoutManager(requireContext())
 
             swipeRefresh.setOnRefreshListener { callStory() }
+
+            btnMaps.setOnClickListener { findNavController().navigate(FragmentHomeDirections.actionFragmentHomeToMapsFragment()) }
         }
         callStory()
     }

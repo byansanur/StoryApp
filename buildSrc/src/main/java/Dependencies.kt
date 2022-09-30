@@ -40,6 +40,9 @@ object Versions {
     const val playServiceLocationVersion = "20.0.0"
     const val mapsPlatform = "2.0.0"
     const val swipeRefreshVersion = "1.1.0"
+
+    const val mockitoVersion = "4.8.0"
+    const val androidXTestVersion = "androidXTestVersion"
 }
 
 object BuildPlugins {
@@ -103,6 +106,11 @@ object AndroidLibraries {
 
 object TestLibraries {
     const val junit = "junit:junit:${Versions.jUnit}"
+    const val mockitoTest = "org.mockito:mockito-core:${Versions.mockitoVersion}"
+}
+
+object AndroidTestLibraries {
+    const val androidXTest = "androidx.test:core:${Versions.androidXTestVersion}"
     const val junitAnroidTest = "androidx.test.ext:junit:${Versions.junitAnroidTest}"
     const val espressoCoreAnroidTest = "androidx.test.espresso:espresso-core:${Versions.espressoCoreAnroidTest}"
 

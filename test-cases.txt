@@ -1,1 +1,27 @@
 Test case StoryApp
+by. Ratbyansa Nur
+
+Unit Testing
+1. Repository
+	a. ServicesRepository
+		i.  Register test
+		    -   When successfully registering, make sure to return Success
+            -   When register fails, make sure to return an Error with a message from the API
+            -   When registering with empty name, make sure to return Error with appropriate message.
+            -   When registering with an empty email, make sure to return an Error with the appropriate message.
+            -   When registering with an empty password, make sure to return an Error with the appropriate message.
+        ii. Login Test
+            -   When successfully login, make sure to return Success
+            -   When login fails, make sure to return an Error with a message from the API
+            -   When sign in with an empty email, make sure to return an Error with the appropriate message.
+            -   When sign in with an empty password, make sure to return an Error with the appropriate message.
+        iii. List story test
+            -
+        iv. Post story test
+            -
+
+
+2. Integration Testing
+
+
+3. End-to-End Testing

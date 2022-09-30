@@ -134,6 +134,9 @@ dependencies {
     implementation AndroidLibraries.compressImg
 
     testImplementation TestLibraries.junit
-    androidTestImplementation TestLibraries.junitAnroidTest
-    androidTestImplementation TestLibraries.espressoCoreAnroidTest
+    testImplementation TestLibraries.mockitoTest
+
+    androidTestImplementation AndroidTestLibraries.androidXTest
+    androidTestImplementation AndroidTestLibraries.junitAnroidTest
+    androidTestImplementation AndroidTestLibraries.espressoCoreAnroidTest
 }

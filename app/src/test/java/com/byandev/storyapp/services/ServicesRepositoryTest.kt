@@ -1,10 +1,10 @@
 package com.byandev.storyapp.services
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.byandev.storyapp.data.model.Login
-import com.byandev.storyapp.data.model.Register
-import com.byandev.storyapp.data.model.ResponseBase
-import com.byandev.storyapp.data.model.ResponseLogin
+import androidx.paging.PagingSource
+import androidx.paging.map
+import com.byandev.storyapp.data.model.*
+import com.byandev.storyapp.data.paging_source.StoryPagingSource
 import com.byandev.storyapp.utils.FakerListStory
 import com.byandev.storyapp.utils.FakerResponseBase
 import com.byandev.storyapp.utils.FakerResponseLogin
@@ -14,10 +14,14 @@ import io.reactivex.rxjava3.observers.TestObserver
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
@@ -35,6 +39,7 @@ class ServicesRepositoryTest {
 
     private lateinit var fakerResponseBase: FakerResponseBase
     private lateinit var fakerResponseLogin: FakerResponseLogin
+    private lateinit var fakerResponseStory: FakerListStory
 
     @Before
     fun setUp() {
@@ -46,6 +51,7 @@ class ServicesRepositoryTest {
 
         fakerResponseBase = FakerResponseBase
         fakerResponseLogin = FakerResponseLogin
+        fakerResponseStory = FakerListStory
     }
 
     @Test
@@ -133,15 +139,45 @@ class ServicesRepositoryTest {
         verify(servicesRepository).postLogin(loginFake)
     }
 
-    @Test // bug
-    fun `when getStory Should Not Null`() = runTest {
-//        val expectedStory = FakerListStory.generateListStory()
-//        Mockito
-//            .`when`(services2.getAllStories(1, 10, 0))
-//            .thenReturn(expectedStory)
-//
-//        val actual = servicesRepository2.getListStory(0)
-//        Assert.assertNotNull(actual)
+    @Test
+    fun `When successful get List story, Make sure data is not null`() = runTest {
+        launch {
+            val listMock = fakerResponseStory.generateListStory()
+            Mockito
+                .`when`(services.getAllStories(1, 10, 0))
+                .thenReturn(listMock)
+            val expected = PagingSource.LoadResult.Page(
+                data = listMock.listStory,
+                prevKey = null,
+                nextKey = 1
+            )
+            Assert.assertNotNull(expected.data)
+        }
+    }
+
+    @Test
+    fun `Make sure the expected size data is correct from the actual response`() = runTest {
+        launch {
+            val listMock = fakerResponseStory.generateListStory()
+
+            Mockito
+                .`when`(services.getAllStories(1, 10, 0))
+                .thenReturn(listMock)
+
+            val expected = PagingSource.LoadResult.Page(
+                data = listMock.listStory,
+                prevKey = null,
+                nextKey = 1
+            )
+            Assert.assertEquals(
+                expected.data.size,
+                PagingSource.LoadParams.Refresh(
+                    key = 0,
+                    loadSize = 11,
+                    placeholdersEnabled = true
+                ).loadSize
+            )
+        }
     }
 
     @Test // bug

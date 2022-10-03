@@ -23,7 +23,10 @@ class StoryPagingSource @Inject constructor(
             val response = apiServices.getAllStories(
                 page, 10, location
             )
-            val nextKey = if (response.listStory.isNotEmpty()) page +1 else null
+            val nextKey =
+                if (response.listStory.isNotEmpty())
+                    page +1
+                else null
             LoadResult.Page(
                 data = response.listStory,
                 prevKey = null,

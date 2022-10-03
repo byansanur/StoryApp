@@ -13,7 +13,10 @@ Unit Testing
         iii. List story test
             - When successful get List story, Make sure data is not null
             - Make sure the expected size data is correct from the actual response
-        iv. Post story test
+        iv. List Story location
+            - When successful get List story location, Make sure data is not null
+            - Make sure the expected size data is correct from the actual response
+        v.  Post story test
             - When successful Post story, Make sure post story data is not null
 
 

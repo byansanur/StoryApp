@@ -13,7 +13,7 @@ class FakeApiServices : ApiServices {
     private val responseLoginFake = FakerResponseLogin
 
     override fun postRegisterNewUser(request: Register): Single<ResponseBase> {
-        return Single.just(responseBaseFake.responseBaseSuccessfulRegisterFaker)
+        return Single.just(responseBaseFake.responseBaseSuccessfulFaker)
     }
 
     override fun postLoginUser(request: Login): Single<ResponseLogin> {
@@ -26,7 +26,7 @@ class FakeApiServices : ApiServices {
         lat: RequestBody?,
         lon: RequestBody?
     ): Single<ResponseBase> {
-        return Single.just(responseBaseFake.responseBaseSuccessfulRegisterFaker)
+        return Single.just(responseBaseFake.responseBaseSuccessfulFaker)
     }
 
     override suspend fun getAllStories(page: Int, size: Int, location: Int?): ResponseAllStories {

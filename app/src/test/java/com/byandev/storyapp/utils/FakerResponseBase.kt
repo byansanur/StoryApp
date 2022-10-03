@@ -4,18 +4,13 @@ import com.byandev.storyapp.data.model.Register
 import com.byandev.storyapp.data.model.ResponseBase
 
 object FakerResponseBase {
-    val responseBaseSuccessfulRegisterFaker = ResponseBase(
+    val responseBaseSuccessfulFaker = ResponseBase(
         error = false,
-        message = "User Created"
+        message = "Success"
     )
 
-    val responseBaseErrorRegisterFaker = ResponseBase(
+    val responseBaseErrorFaker = ResponseBase(
         error = true,
-        message = "\"email\" must be a valid email"
-    )
-
-    val responseBaseErrorNameRegisterFaker = ResponseBase(
-        error = true,
-        message = "\"name\" is not allowed to be empty"
+        message = "Error"
     )
 }

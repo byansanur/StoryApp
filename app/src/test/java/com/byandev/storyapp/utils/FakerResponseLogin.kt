@@ -16,4 +16,12 @@ object FakerResponseLogin {
             message = "Success"
         )
     }
+
+    fun generateLoginErrorFake() : ResponseLogin {
+        return ResponseLogin(
+            error = true,
+            loginResult = null,
+            message = "Error"
+        )
+    }
 }

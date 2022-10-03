@@ -2,9 +2,10 @@ package com.byandev.storyapp.services
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingSource
-import androidx.paging.map
-import com.byandev.storyapp.data.model.*
-import com.byandev.storyapp.data.paging_source.StoryPagingSource
+import com.byandev.storyapp.data.model.Login
+import com.byandev.storyapp.data.model.Register
+import com.byandev.storyapp.data.model.ResponseBase
+import com.byandev.storyapp.data.model.ResponseLogin
 import com.byandev.storyapp.utils.FakerListStory
 import com.byandev.storyapp.utils.FakerResponseBase
 import com.byandev.storyapp.utils.FakerResponseLogin
@@ -14,14 +15,11 @@ import io.reactivex.rxjava3.observers.TestObserver
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.*
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify

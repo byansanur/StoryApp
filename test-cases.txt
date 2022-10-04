@@ -1,7 +1,7 @@
 Test case StoryApp
 by. Ratbyansa Nur
 
-1. Repository
+1. Unit Test
 	a. ServicesRepository
 		i.  Register test
 		    -   When successfully registering, make sure to return Success
@@ -19,9 +19,7 @@ by. Ratbyansa Nur
             - When successful Post story, Make sure post story data is not null
             - When successful Post story with location, Make sure post story data is not null
 
-
-2. Integration Testing
-    a. SharedViewModel
+    b. SharedViewModel
         i.  Register test
             - When successfully registering, ensure registration returns value from API
         ii. Login test
@@ -32,6 +30,3 @@ by. Ratbyansa Nur
             - When successfully get story location, ensure story returns value from API
         v. Post Story
             - When successfully post story, ensure story returns value from API
-
-
-3. End-to-End Testing

@@ -13,7 +13,6 @@ interface ApiServices {
         @Body request: Register,
     ): Single<ResponseBase>
 
-
     @POST("login")
     fun postLoginUser(
         @Body request: Login

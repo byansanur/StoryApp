@@ -20,6 +20,7 @@ import com.byandev.storyapp.R
 import com.byandev.storyapp.data.model.Story
 import com.byandev.storyapp.databinding.FragmentMapsBinding
 import com.byandev.storyapp.di.LocationUtils
+import com.byandev.storyapp.di.UtilsConnect
 import com.byandev.storyapp.presentation.SharedViewModel
 import com.byandev.storyapp.utils.Resources
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -34,7 +35,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MapsFragment : Fragment() {
+class FragmentMaps : Fragment() {
 
     private var _binding: FragmentMapsBinding? = null
     private val binding get() = _binding!!
@@ -49,6 +50,9 @@ class MapsFragment : Fragment() {
 
     @Inject
     lateinit var locationUtils: LocationUtils
+
+    @Inject
+    lateinit var utilsConnect: UtilsConnect
 
     private val callback = OnMapReadyCallback { googleMap ->
         gMap = googleMap
@@ -95,72 +99,76 @@ class MapsFragment : Fragment() {
 
     private fun getStoryLocation() {
         lifecycleScope.launchWhenCreated {
-            viewModel.getListStoryLocation().observe(viewLifecycleOwner) {
-                when(it) {
-                    is Resources.Loading -> {}
-                    is Resources.Success -> {
-                        listStory = it.data?.listStory?.toMutableList() ?: arrayListOf()
-                        for (story in it.data?.listStory!!) {
-                            val latLon = LatLng(story.lat!!, story.lon!!)
+            if (utilsConnect.isConnectedToInternet()) {
+                viewModel.getListStoryLocation().observe(viewLifecycleOwner) {
+                    when(it) {
+                        is Resources.Loading -> {}
+                        is Resources.Success -> {
+                            listStory = it.data?.listStory?.toMutableList() ?: arrayListOf()
+                            for (story in it.data?.listStory!!) {
+                                val latLon = LatLng(story.lat!!, story.lon!!)
 
-                            Glide.with(requireContext())
-                                .asBitmap()
-                                .load(story.photoUrl)
-                                .dontTransform()
-                                .centerCrop()
-                                .into(object : SimpleTarget<Bitmap>() {
-                                    override fun onResourceReady(
-                                        resource: Bitmap,
-                                        transition: Transition<in Bitmap>?
-                                    ) {
-                                        val scale = requireContext().resources.displayMetrics.density
-                                        val pixels = (50 * scale + 0.5f).toInt()
-                                        val bitmap = Bitmap.createScaledBitmap(
-                                            resource,
-                                            pixels,
-                                            pixels,
-                                            true
-                                        )
+                                Glide.with(requireContext())
+                                    .asBitmap()
+                                    .load(story.photoUrl)
+                                    .dontTransform()
+                                    .centerCrop()
+                                    .into(object : SimpleTarget<Bitmap>() {
+                                        override fun onResourceReady(
+                                            resource: Bitmap,
+                                            transition: Transition<in Bitmap>?
+                                        ) {
+                                            val scale = requireContext().resources.displayMetrics.density
+                                            val pixels = (50 * scale + 0.5f).toInt()
+                                            val bitmap = Bitmap.createScaledBitmap(
+                                                resource,
+                                                pixels,
+                                                pixels,
+                                                true
+                                            )
 
-                                        gMap.addMarker(MarkerOptions()
-                                            .position(latLon)
-                                            .title("${story.name} - ${story.description}")
-                                            .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
-                                            .anchor(0.5f, 1F)
+                                            gMap.addMarker(MarkerOptions()
+                                                .position(latLon)
+                                                .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+                                                .anchor(0.5f, 1F)
 
-                                        )?.tag = story
-                                    }
+                                            )?.tag = story
+                                        }
 
-                                    override fun onLoadFailed(errorDrawable: Drawable?) {
-                                        super.onLoadFailed(errorDrawable)
-                                        gMap.addMarker(MarkerOptions()
-                                            .position(latLon)
-                                            .title("${story.name} - ${story.description}")
-                                        )
-                                    }
+                                        override fun onLoadFailed(errorDrawable: Drawable?) {
+                                            super.onLoadFailed(errorDrawable)
+                                            gMap.addMarker(MarkerOptions()
+                                                .position(latLon)
+                                                .title("${story.name} - ${story.description}")
+                                            )
+                                        }
 
-                                })
+                                    })
 
+                            }
+                            gMap.setOnMarkerClickListener { maker ->
+                                val storyTag = maker.tag
+                                Log.e("TAG", "getStoryLocation: tag id marker $storyTag")
+                                val nav = FragmentMapsDirections.actionMapsFragmentToFragmentDetailStory(
+                                    storyTag as Story
+                                )
+                                findNavController().navigate(nav)
+                                false
+                            }
                         }
-                        gMap.setOnMarkerClickListener { maker ->
-                            val storyTag = maker.tag
-                            Log.e("TAG", "getStoryLocation: tag id marker $storyTag")
-                            val nav = MapsFragmentDirections.actionMapsFragmentToFragmentDetailStory(
-                                storyTag as Story
-                            )
-                            findNavController().navigate(nav)
-                            false
+                        is Resources.Error -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error - ${it.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            findNavController().navigateUp()
                         }
-                    }
-                    is Resources.Error -> {
-                        Toast.makeText(
-                            requireContext(),
-                            "Error - ${it.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        findNavController().navigateUp()
                     }
                 }
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show()
+                findNavController().navigateUp()
             }
         }
     }

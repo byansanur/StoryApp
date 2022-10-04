@@ -8,14 +8,11 @@ import javax.inject.Inject
 class UtilsConnect @Inject constructor(private val context: Context) {
     fun isConnectedToInternet(): Boolean {
         val connectivity = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivity != null) {
-            val info = connectivity.allNetworkInfo
-            if (info != null)
-                for (i in info.indices)
-                    if (info[i].state == NetworkInfo.State.CONNECTED) {
-                        return true
-                    }
-        }
+        val info = connectivity.allNetworkInfo
+        for (i in info.indices)
+            if (info[i].state == NetworkInfo.State.CONNECTED) {
+                return true
+            }
         return false
     }
 }

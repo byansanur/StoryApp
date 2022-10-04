@@ -1,0 +1,32 @@
+Test case StoryApp
+by. Ratbyansa Nur
+
+1. Unit Test
+	a. ServicesRepository
+		i.  Register test
+		    -   When successfully registering, make sure to return Success
+            -   When register fails, make sure to return an Error with a message from the API
+        ii. Login Test
+            -   When successfully login, make sure to return Success
+            -   When login fails, make sure to return an Error with a message from the API
+        iii. List story test
+            - When successful get List story, Make sure data is not null
+            - When successful get List story,Make sure the expected size data is correct
+        iv. List Story location
+            - When successful get List story location, Make sure data is not null
+            - When successful get List story location, Make sure the expected size data is correct
+        v.  Post story test
+            - When successful Post story, Make sure post story data is not null
+            - When successful Post story with location, Make sure post story data is not null
+
+    b. SharedViewModel
+        i.  Register test
+            - When successfully registering, ensure registration returns Not Null
+        ii. Login test
+            - When successfully login, ensure login returns Not Null
+        iii. Story list test
+            - When successfully get story, ensure story returns Not Null
+        iv. Story list location test
+            - When successfully get story location, ensure story returns Not Null
+        v. Post Story
+            - When successfully post story, ensure story returns Not Null

@@ -1,16 +1,13 @@
 package com.byandev.storyapp.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.byandev.storyapp.databinding.ItemImageBinding
 import com.byandev.storyapp.di.GlideApp
 import java.io.File
-import javax.inject.Inject
 
 
 class ImageGalleryAdapter : RecyclerView.Adapter<ImageGalleryAdapter.Holder>() {

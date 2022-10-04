@@ -2,7 +2,6 @@ package com.byandev.storyapp.data.paging_source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.byandev.storyapp.data.model.ResponseAllStories
 import com.byandev.storyapp.data.model.Story
 import com.byandev.storyapp.services.ApiServices
 import retrofit2.HttpException

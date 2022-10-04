@@ -134,6 +134,13 @@ dependencies {
     implementation AndroidLibraries.compressImg
 
     testImplementation TestLibraries.junit
-    androidTestImplementation TestLibraries.junitAnroidTest
-    androidTestImplementation TestLibraries.espressoCoreAnroidTest
+    testImplementation TestLibraries.mockitoTest
+    testImplementation TestLibraries.mockitoInlineTest
+    testImplementation TestLibraries.archCoreTest // InstantTaskExecutorRule
+    testImplementation TestLibraries.kotlinCoroutinesTest //TestCoroutineDispatcher
+
+
+    androidTestImplementation AndroidTestLibraries.androidXTest
+    androidTestImplementation AndroidTestLibraries.junitAnroidTest
+    androidTestImplementation AndroidTestLibraries.espressoCoreAnroidTest
 }

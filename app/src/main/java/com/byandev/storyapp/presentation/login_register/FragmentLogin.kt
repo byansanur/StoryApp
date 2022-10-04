@@ -4,26 +4,25 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
-import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.byandev.storyapp.R
 import com.byandev.storyapp.data.model.Login
 import com.byandev.storyapp.data.model.LoginResult
 import com.byandev.storyapp.databinding.FragmentLoginBinding
 import com.byandev.storyapp.di.SharedPrefManager
+import com.byandev.storyapp.di.UtilsConnect
 import com.byandev.storyapp.presentation.SharedViewModel
 import com.byandev.storyapp.utils.Resources
 import com.byandev.storyapp.utils.dialogLoading
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -41,6 +40,8 @@ class FragmentLogin : Fragment() {
 
     @Inject
     lateinit var sharedPref: SharedPrefManager
+    @Inject
+    lateinit var utilsConnect: UtilsConnect
     private val sharedViewModel: SharedViewModel by viewModels()
 
     private var emailUser = ""
@@ -137,23 +138,28 @@ class FragmentLogin : Fragment() {
         lifecycleScope.launch {
             dialogLoading(dialog)
             delay(5000)
-            sharedViewModel.loginUsers(login).observe(viewLifecycleOwner) {
-                when(it) {
-                    is Resources.Loading -> {}
-                    is Resources.Success -> {
-                        dialog.dismiss()
-                        loginSaved(it.data?.loginResult)
-                        val nav = FragmentLoginDirections.actionFragmentLoginToFragmentHome()
-                        findNavController().navigate(nav)
-                        Toast.makeText(requireContext(), "${it.data?.message}", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                    is Resources.Error -> {
-                        dialog.dismiss()
-                        Toast.makeText(requireContext(), "Error:${it.message}", Toast.LENGTH_SHORT)
-                            .show()
+            if (utilsConnect.isConnectedToInternet()) {
+                sharedViewModel.loginUsers(login).observe(viewLifecycleOwner) {
+                    when(it) {
+                        is Resources.Loading -> {}
+                        is Resources.Success -> {
+                            dialog.dismiss()
+                            loginSaved(it.data?.loginResult)
+                            val nav = FragmentLoginDirections.actionFragmentLoginToFragmentHome()
+                            findNavController().navigate(nav)
+                            Toast.makeText(requireContext(), "${it.data?.message}", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        is Resources.Error -> {
+                            dialog.dismiss()
+                            Toast.makeText(requireContext(), "Error:${it.message}", Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
                 }
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
             }
         }
     }

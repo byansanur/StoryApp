@@ -51,4 +51,11 @@
     <string name="sign_in_here">Masuk di sini</string>
     <string name="register">Daftar</string>
     <string name="sign_up">Daftar</string>
+    <string name="maps">Peta</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satelit</string>
+    <string name="terrain_type">Medan</string>
+    <string name="hybrid_type">Campuran</string>
+    <string name="your_location">Lokasi kamu</string>
+    <string name="error_message">Pesan Error....</string>
 </resources>

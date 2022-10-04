@@ -30,6 +30,11 @@
         android:theme="@style/Theme.StoryApp.Starting"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/API_KEY" />
+
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

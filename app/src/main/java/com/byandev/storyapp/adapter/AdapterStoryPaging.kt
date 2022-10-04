@@ -5,7 +5,6 @@ import android.os.Build
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -19,14 +18,13 @@ import com.byandev.storyapp.utils.glideUrls
 import com.byandev.storyapp.utils.textAsBitmap
 import javax.inject.Inject
 
-@RequiresApi(Build.VERSION_CODES.M)
 class AdapterStoryPaging @Inject constructor(
     private val listener: StoryClickListener,
     private val sharedPrefManager: SharedPrefManager
 ) : PagingDataAdapter<Story, AdapterStoryPaging.Holder>(DIFF_UTIL) {
 
     companion object {
-        private val DIFF_UTIL = object : DiffUtil.ItemCallback<Story>() {
+        val DIFF_UTIL = object : DiffUtil.ItemCallback<Story>() {
             override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
                 return oldItem.id == newItem.id
             }

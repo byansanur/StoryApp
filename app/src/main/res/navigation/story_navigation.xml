@@ -66,6 +66,15 @@
             app:exitAnim="@anim/exit_to_right"
             app:popEnterAnim="@anim/enter_form_left"
             app:popExitAnim="@anim/exit_to_right"/>
+        <action
+            android:id="@+id/action_fragmentHome_to_mapsFragment"
+            app:destination="@id/mapsFragment"
+            app:popUpTo="@id/mapsFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/enter_form_right"
+            app:exitAnim="@anim/exit_to_right"
+            app:popEnterAnim="@anim/enter_form_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/fragmentIntroPermission"
@@ -118,5 +127,14 @@
         <argument
             android:name="story"
             app:argType="com.byandev.storyapp.data.model.Story" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.byandev.storyapp.presentation.map_view.FragmentMaps"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_fragmentDetailStory"
+            app:destination="@id/fragmentDetailStory" />
     </fragment>
 </navigation>

@@ -13,7 +13,6 @@ interface ApiServices {
         @Body request: Register,
     ): Single<ResponseBase>
 
-
     @POST("login")
     fun postLoginUser(
         @Body request: Login
@@ -34,6 +33,11 @@ interface ApiServices {
         @Query("size") size: Int,
         @Query("location") location: Int?
     ) : ResponseAllStories
+
+    @GET("stories")
+    fun getStoriesLocation(
+        @Query("location") location: Int = 1
+    ) : Single<ResponseAllStories>
 
 
 }

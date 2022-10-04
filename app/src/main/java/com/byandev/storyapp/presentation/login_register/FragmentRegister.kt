@@ -14,9 +14,11 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.byandev.storyapp.R
 import com.byandev.storyapp.data.model.Register
 import com.byandev.storyapp.databinding.FragmentRegisterBinding
 import com.byandev.storyapp.di.SharedPrefManager
+import com.byandev.storyapp.di.UtilsConnect
 import com.byandev.storyapp.presentation.SharedViewModel
 import com.byandev.storyapp.utils.Resources
 import com.byandev.storyapp.utils.dialogLoading
@@ -38,6 +40,8 @@ class FragmentRegister : Fragment() {
 
     @Inject
     lateinit var sharedPref: SharedPrefManager
+    @Inject
+    lateinit var utilsConnect: UtilsConnect
 
     private val sharedViewModel: SharedViewModel by viewModels()
 
@@ -114,25 +118,32 @@ class FragmentRegister : Fragment() {
         lifecycleScope.launch {
             dialogLoading(dialog)
             delay(5000)
-            sharedViewModel.registerUsers(register).observe(viewLifecycleOwner) {
-                when(it) {
-                    is Resources.Loading -> Log.e(TAG, "registerNewUser: loading")
-                    is Resources.Success -> {
-                        dialog.dismiss()
-                        Log.e(TAG, "registerNewUser: success ${Gson().toJson(it.data)}")
-                        sharedPref.userKey = passwordUser
-                        sharedPref.email = emailUser
-                        Toast.makeText(requireContext(), "${it.data?.message}", Toast.LENGTH_SHORT)
-                            .show()
-                        findNavController().navigateUp()
-                    }
-                    is Resources.Error -> {
-                        dialog.dismiss()
-                        Log.e(TAG, "registerNewUser: error cause ${it.message}")
-                        Toast.makeText(requireContext(), "Error:${it.message}", Toast.LENGTH_SHORT)
-                            .show()
+            if (utilsConnect.isConnectedToInternet()) {
+
+                sharedViewModel.registerUsers(register).observe(viewLifecycleOwner) {
+                    when(it) {
+                        is Resources.Loading -> Log.e(TAG, "registerNewUser: loading")
+                        is Resources.Success -> {
+                            dialog.dismiss()
+                            Log.e(TAG, "registerNewUser: success ${Gson().toJson(it.data)}")
+                            sharedPref.userKey = passwordUser
+                            sharedPref.email = emailUser
+                            Toast.makeText(requireContext(), "${it.data?.message}", Toast.LENGTH_SHORT)
+                                .show()
+                            findNavController().navigateUp()
+                        }
+                        is Resources.Error -> {
+                            dialog.dismiss()
+                            Log.e(TAG, "registerNewUser: error cause ${it.message}")
+                            Toast.makeText(requireContext(), "Error:${it.message}", Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
                 }
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT)
+                    .show()
+                dialog.dismiss()
             }
         }
     }

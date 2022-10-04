@@ -3,7 +3,6 @@ package com.byandev.storyapp.di
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Base64
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 

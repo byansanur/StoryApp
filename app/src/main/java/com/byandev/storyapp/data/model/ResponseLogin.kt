@@ -1,6 +1,5 @@
 package com.byandev.storyapp.data.model
 
-
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -9,7 +8,7 @@ data class ResponseLogin(
     @Json(name = "error")
     val error: Boolean,
     @Json(name = "loginResult")
-    val loginResult: LoginResult,
+    val loginResult: LoginResult?,
     @Json(name = "message")
     val message: String
 )

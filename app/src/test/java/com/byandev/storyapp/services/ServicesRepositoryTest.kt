@@ -2,13 +2,11 @@ package com.byandev.storyapp.services
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingSource
-import com.byandev.storyapp.data.model.Login
-import com.byandev.storyapp.data.model.Register
-import com.byandev.storyapp.data.model.ResponseBase
-import com.byandev.storyapp.data.model.ResponseLogin
+import com.byandev.storyapp.data.model.*
 import com.byandev.storyapp.utils.FakerListStory
 import com.byandev.storyapp.utils.FakerResponseBase
 import com.byandev.storyapp.utils.FakerResponseLogin
+import com.byandev.storyapp.utils.convertRequestBody
 import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.observers.TestObserver
@@ -23,6 +21,7 @@ import org.junit.runners.JUnit4
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
+import java.io.File
 import java.io.IOException
 
 @RunWith(JUnit4::class)
@@ -178,19 +177,55 @@ class ServicesRepositoryTest {
         }
     }
 
-    @Test // bug
+    @Test
     fun `when getStoryLocation Should Not Null`() = runTest {
         val expectedStory = FakerListStory.generateListStory()
         Mockito
             .`when`(services.getStoriesLocation())
             .thenReturn(Single.just(expectedStory))
-        var actualSize = 0
-        val actual = servicesRepository.getStoryLocation().test().assertValue {
-            actualSize = it.listStory.size
-            true
-        }
-        Assert.assertNotNull(actual)
-        Assert.assertEquals(expectedStory.listStory.size, actualSize)
+
+        val actualData = Single.just(expectedStory).blockingGet()
+        servicesRepository.getStoryLocation()
+
+        val observer = services.getStoriesLocation(1)
+        val testObserver = TestObserver.create<ResponseAllStories>()
+        observer.subscribe(testObserver)
+
+        testObserver.awaitCount(1)
+        testObserver.assertComplete()
+        testObserver.assertResult(expectedStory)
+
+        Assert.assertNotNull(actualData)
+        Assert.assertEquals(expectedStory.listStory.size, actualData.listStory.size)
+        verify(servicesRepository).getStoryLocation()
+    }
+
+    @Test
+    fun `When successful Post story, Make sure post story data is not null`() = runTest {
+        val filePhoto = convertRequestBody(File("app/src/main/res/drawable/image_signup.png"))
+        val description = convertRequestBody("description")
+        val expectedData = fakerResponseBase.responseBaseSuccessfulFaker
+        Mockito
+            .`when`(services.postStories(description, filePhoto, null, null))
+            .thenReturn(Single.just(expectedData))
+
+        val actualData = Single.just(expectedData).blockingGet()
+        servicesRepository.postStories(
+            description = description,
+            photo = filePhoto,
+            lat = null, lon = null
+        )
+
+        val observer = services.postStories(description, filePhoto, null, null)
+        val testObserver = TestObserver.create<ResponseBase>()
+        observer.subscribe(testObserver)
+
+        testObserver.awaitCount(1)
+        testObserver.assertComplete()
+        testObserver.assertResult(expectedData)
+
+        Assert.assertNotNull(actualData)
+        verify(servicesRepository).postStories(description, filePhoto, null, null)
     }
 
     @After

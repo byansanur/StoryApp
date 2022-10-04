@@ -202,7 +202,7 @@ class ServicesRepositoryTest {
 
     @Test
     fun `When successful Post story, Make sure post story data is not null`() = runTest {
-        val filePhoto = convertRequestBody(File("app/src/main/res/drawable/image_signup.png"))
+        val filePhoto = convertRequestBody(File("app/src/main/res/drawable/ic_dicoding.webp"))
         val description = convertRequestBody("description")
         val expectedData = fakerResponseBase.responseBaseSuccessfulFaker
         Mockito
@@ -226,6 +226,36 @@ class ServicesRepositoryTest {
 
         Assert.assertNotNull(actualData)
         verify(servicesRepository).postStories(description, filePhoto, null, null)
+    }
+
+    @Test
+    fun `When successful Post story with location, Make sure post story data is not null`() = runTest {
+        val filePhoto = convertRequestBody(File("app/src/main/res/drawable/ic_dicoding.webp"))
+        val description = convertRequestBody("description")
+        val lat = convertRequestBody("37.4220936")
+        val lon = convertRequestBody("-122.083922")
+        val expectedData = fakerResponseBase.responseBaseSuccessfulFaker
+        Mockito
+            .`when`(services.postStories(description, filePhoto, lat, lon))
+            .thenReturn(Single.just(expectedData))
+
+        val actualData = Single.just(expectedData).blockingGet()
+        servicesRepository.postStories(
+            description = description,
+            photo = filePhoto,
+            lat = lat, lon = lon
+        )
+
+        val observer = services.postStories(description, filePhoto, lat, lon)
+        val testObserver = TestObserver.create<ResponseBase>()
+        observer.subscribe(testObserver)
+
+        testObserver.awaitCount(1)
+        testObserver.assertComplete()
+        testObserver.assertResult(expectedData)
+
+        Assert.assertNotNull(actualData)
+        verify(servicesRepository).postStories(description, filePhoto, lat, lon)
     }
 
     @After

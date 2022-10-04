@@ -18,6 +18,7 @@ Unit Testing
             - Make sure the expected size data is correct from the actual response
         v.  Post story test
             - When successful Post story, Make sure post story data is not null
+            - When successful Post story with location, Make sure post story data is not null
 
 
 2. Integration Testing

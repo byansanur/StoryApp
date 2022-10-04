@@ -35,7 +35,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MapsFragment : Fragment() {
+class FragmentMaps : Fragment() {
 
     private var _binding: FragmentMapsBinding? = null
     private val binding get() = _binding!!
@@ -129,7 +129,6 @@ class MapsFragment : Fragment() {
 
                                             gMap.addMarker(MarkerOptions()
                                                 .position(latLon)
-                                                .title("${story.name} - ${story.description}")
                                                 .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
                                                 .anchor(0.5f, 1F)
 
@@ -150,7 +149,7 @@ class MapsFragment : Fragment() {
                             gMap.setOnMarkerClickListener { maker ->
                                 val storyTag = maker.tag
                                 Log.e("TAG", "getStoryLocation: tag id marker $storyTag")
-                                val nav = MapsFragmentDirections.actionMapsFragmentToFragmentDetailStory(
+                                val nav = FragmentMapsDirections.actionMapsFragmentToFragmentDetailStory(
                                     storyTag as Story
                                 )
                                 findNavController().navigate(nav)

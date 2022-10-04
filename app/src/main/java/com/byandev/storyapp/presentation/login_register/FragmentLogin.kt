@@ -4,13 +4,13 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -23,7 +23,6 @@ import com.byandev.storyapp.di.UtilsConnect
 import com.byandev.storyapp.presentation.SharedViewModel
 import com.byandev.storyapp.utils.Resources
 import com.byandev.storyapp.utils.dialogLoading
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

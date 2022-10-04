@@ -2,7 +2,6 @@ package com.byandev.storyapp.data.paging_source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.byandev.storyapp.data.model.ResponseAllStories
 import com.byandev.storyapp.data.model.Story
 import com.byandev.storyapp.services.ApiServices
 import retrofit2.HttpException
@@ -23,10 +22,7 @@ class StoryPagingSource @Inject constructor(
             val response = apiServices.getAllStories(
                 page, 10, location
             )
-            val nextKey =
-                if (response.listStory.isNotEmpty())
-                    page +1
-                else null
+            val nextKey = if (response.listStory.isNotEmpty()) page +1 else null
             LoadResult.Page(
                 data = response.listStory,
                 prevKey = null,

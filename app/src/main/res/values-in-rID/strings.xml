@@ -57,4 +57,5 @@
     <string name="terrain_type">Medan</string>
     <string name="hybrid_type">Campuran</string>
     <string name="your_location">Lokasi kamu</string>
+    <string name="error_message">Pesan Error....</string>
 </resources>

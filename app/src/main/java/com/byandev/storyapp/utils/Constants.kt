@@ -6,8 +6,6 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.drawable.Icon
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.byandev.storyapp.R
@@ -86,7 +84,6 @@ fun dialogLoading(dialog: Dialog) {
 }
 
 
-@RequiresApi(Build.VERSION_CODES.M)
 fun textAsBitmap(text: String, textSize: Float, textColor: Int): Icon? {
     val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     paint.textSize = textSize
@@ -127,7 +124,7 @@ fun covertTimeToText(dataDate: String?, context: Context): String? {
                     else -> (day / 7).toString() + " Week " + suffix
                 }
             }
-            day < 7 -> {
+            else -> {
                 convTime = "$day Days $suffix"
             }
         }

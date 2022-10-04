@@ -71,7 +71,6 @@ dependencies {
 
     // glide
     implementation AndroidLibraries.glideVersion
-    implementation 'androidx.test:monitor:1.5.0'
     kapt AndroidLibraries.kaptGlide
 
     // map
@@ -136,9 +135,9 @@ dependencies {
 
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.mockitoTest
-    testImplementation 'org.mockito:mockito-inline:2.13.0'
-    testImplementation "androidx.arch.core:core-testing:2.1.0" // InstantTaskExecutorRule
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1" //TestCoroutineDispatcher
+    testImplementation TestLibraries.mockitoInlineTest
+    testImplementation TestLibraries.archCoreTest // InstantTaskExecutorRule
+    testImplementation TestLibraries.kotlinCoroutinesTest //TestCoroutineDispatcher
 
 
     androidTestImplementation AndroidTestLibraries.androidXTest

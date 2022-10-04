@@ -5,7 +5,6 @@ import android.os.Build
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,6 @@ import com.byandev.storyapp.utils.glideUrls
 import com.byandev.storyapp.utils.textAsBitmap
 import javax.inject.Inject
 
-@RequiresApi(Build.VERSION_CODES.M)
 class AdapterStoryPaging @Inject constructor(
     private val listener: StoryClickListener,
     private val sharedPrefManager: SharedPrefManager

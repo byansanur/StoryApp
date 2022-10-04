@@ -10,7 +10,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class ServicesRepository @Inject constructor(
     private val apiServices: ApiServices

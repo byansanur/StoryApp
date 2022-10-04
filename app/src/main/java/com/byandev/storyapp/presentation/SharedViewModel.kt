@@ -8,14 +8,11 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.byandev.storyapp.data.model.*
-import com.byandev.storyapp.di.UtilsConnect
 import com.byandev.storyapp.services.ServicesRepository
 import com.byandev.storyapp.utils.Resources
 import com.byandev.storyapp.utils.handlingError
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import okhttp3.MultipartBody

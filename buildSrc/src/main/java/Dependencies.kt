@@ -42,6 +42,9 @@ object Versions {
     const val swipeRefreshVersion = "1.1.0"
 
     const val mockitoVersion = "4.8.0"
+    const val mockitoInLineVersion = "2.13.0"
+    const val archCoreTestVersion = "2.1.0"
+    const val kotlinCoroutinesTestVersion = "1.6.1"
     const val androidXTestVersion = "androidXTestVersion"
 }
 
@@ -107,6 +110,9 @@ object AndroidLibraries {
 object TestLibraries {
     const val junit = "junit:junit:${Versions.jUnit}"
     const val mockitoTest = "org.mockito:mockito-core:${Versions.mockitoVersion}"
+    const val mockitoInlineTest = "org.mockito:mockito-inline:${Versions.mockitoInLineVersion}"
+    const val archCoreTest = "androidx.arch.core:core-testing:${Versions.archCoreTestVersion}"
+    const val kotlinCoroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutinesTestVersion}"
 }
 
 object AndroidTestLibraries {
@@ -122,8 +128,8 @@ object ConfigData {
     const val buildToolsVersion = "30.0.3"
     const val minSdkVersion = 23
     const val targetSdkVersion = 32
-    const val versionCodes = 1
-    const val versionName = "1.0.0"
+    const val versionCodes = 2
+    const val versionName = "2.0.0"
 
 
 }

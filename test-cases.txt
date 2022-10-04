@@ -1,7 +1,6 @@
 Test case StoryApp
 by. Ratbyansa Nur
 
-Unit Testing
 1. Repository
 	a. ServicesRepository
 		i.  Register test

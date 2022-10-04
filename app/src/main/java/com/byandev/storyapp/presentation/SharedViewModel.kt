@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
 import com.byandev.storyapp.data.model.*
@@ -15,6 +16,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -58,7 +60,7 @@ class SharedViewModel @Inject constructor(
         return output
     }
 
-    fun getListStory(location: Int) = servicesRepository.getListStory(location)
+    fun getListStory(location: Int) : Flow<PagingData<Story>> = servicesRepository.getListStory(location)
         .map { data -> data.map { it } }
         .cachedIn(viewModelScope)
 

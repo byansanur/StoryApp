@@ -26,7 +26,7 @@ class AdapterStoryPaging @Inject constructor(
 ) : PagingDataAdapter<Story, AdapterStoryPaging.Holder>(DIFF_UTIL) {
 
     companion object {
-        private val DIFF_UTIL = object : DiffUtil.ItemCallback<Story>() {
+        val DIFF_UTIL = object : DiffUtil.ItemCallback<Story>() {
             override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
                 return oldItem.id == newItem.id
             }

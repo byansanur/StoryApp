@@ -12,16 +12,21 @@ Unit Testing
             -   When login fails, make sure to return an Error with a message from the API
         iii. List story test
             - When successful get List story, Make sure data is not null
-            - Make sure the expected size data is correct from the actual response
+            - When successful get List story,Make sure the expected size data is correct
         iv. List Story location
             - When successful get List story location, Make sure data is not null
-            - Make sure the expected size data is correct from the actual response
+            - When successful get List story location, Make sure the expected size data is correct
         v.  Post story test
             - When successful Post story, Make sure post story data is not null
             - When successful Post story with location, Make sure post story data is not null
 
 
 2. Integration Testing
+    a. SharedViewModel
+        i.  Register test
+            - When successfully registering, ensure registration returns value from API
+        ii. Login test
+            - When successfully login, ensure login returns value from API
 
 
 3. End-to-End Testing

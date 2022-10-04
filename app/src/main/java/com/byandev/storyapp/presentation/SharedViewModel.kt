@@ -22,52 +22,39 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(
-    private val servicesRepository: ServicesRepository,
-    private val utilsConnect: UtilsConnect
+    private val servicesRepository: ServicesRepository
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
     fun registerUsers(request: Register) : LiveData<Resources<ResponseBase>> {
         val output = MutableLiveData<Resources<ResponseBase>>()
-        if (utilsConnect.isConnectedToInternet()) {
-            compositeDisposable.add(
-                servicesRepository.postRegister(request)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { output.postValue(Resources.Loading()) }
-                    .subscribe({
-                        if (!it.error) output.postValue(Resources.Success(it))
-                        else output.postValue(Resources.Error(it.message, null))
-                    }, {
-                        output.postValue(Resources.Error(handlingError(it), null))
-                    })
-            )
-        } else {
-            output.postValue(Resources.Error("No internet connection"))
-        }
+        compositeDisposable.add(
+            servicesRepository.postRegister(request)
+                .doOnSubscribe { output.postValue(Resources.Loading()) }
+                .subscribe({
+                    if (!it.error) output.postValue(Resources.Success(it))
+                    else output.postValue(Resources.Error(it.message, null))
+                }, {
+                    output.postValue(Resources.Error(handlingError(it), null))
+                })
+        )
         return output
     }
 
 
     fun loginUsers(request: Login) : LiveData<Resources<ResponseLogin>> {
         val output = MutableLiveData<Resources<ResponseLogin>>()
-        if (utilsConnect.isConnectedToInternet()) {
-            compositeDisposable.add(
-                servicesRepository.postLogin(request)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { output.postValue(Resources.Loading()) }
-                    .subscribe({
-                        if (!it.error) output.postValue(Resources.Success(it))
-                        else output.postValue(Resources.Error(it.message, null))
-                    }, {
-                        output.postValue(Resources.Error(handlingError(it), null))
-                    })
-            )
-        } else {
-            output.postValue(Resources.Error("No internet connection"))
-        }
+        compositeDisposable.add(
+            servicesRepository.postLogin(request)
+                .doOnSubscribe { output.postValue(Resources.Loading()) }
+                .subscribe({
+                    if (!it.error) output.postValue(Resources.Success(it))
+                    else output.postValue(Resources.Error(it.message, null))
+                }, {
+                    output.postValue(Resources.Error(handlingError(it), null))
+                })
+        )
         return output
     }
 
@@ -77,21 +64,15 @@ class SharedViewModel @Inject constructor(
 
     fun getListStoryLocation() : LiveData<Resources<ResponseAllStories>> {
         val output = MutableLiveData<Resources<ResponseAllStories>>()
-        if (utilsConnect.isConnectedToInternet()) {
-            compositeDisposable.add(
-                servicesRepository.getStoryLocation()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { output.postValue(Resources.Loading()) }
-                    .subscribe({
-                        output.postValue(Resources.Success(it))
-                    }, {
-                        output.postValue(Resources.Error(handlingError(it), null))
-                    })
-            )
-        } else {
-            output.postValue(Resources.Error("No internet connection", null))
-        }
+        compositeDisposable.add(
+            servicesRepository.getStoryLocation()
+                .doOnSubscribe { output.postValue(Resources.Loading()) }
+                .subscribe({
+                    output.postValue(Resources.Success(it))
+                }, {
+                    output.postValue(Resources.Error(handlingError(it), null))
+                })
+        )
         return output
     }
 
@@ -102,23 +83,17 @@ class SharedViewModel @Inject constructor(
         lon: RequestBody?
     ) : LiveData<Resources<ResponseBase>> {
         val output = MutableLiveData<Resources<ResponseBase>>()
-        if (utilsConnect.isConnectedToInternet()) {
-            compositeDisposable.add(
-                servicesRepository.postStories(
-                    description, photo, lat, lon
-                ).subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { output.postValue(Resources.Loading()) }
-                    .subscribe({
-                        if (!it.error) output.postValue(Resources.Success(it))
-                        else output.postValue(Resources.Error(it.message, null))
-                    }, {
-                        output.postValue(Resources.Error(handlingError(it), null))
-                    })
-            )
-        } else {
-            output.postValue(Resources.Error("No internet connection"))
-        }
+        compositeDisposable.add(
+            servicesRepository.postStories(
+                description, photo, lat, lon
+            ).doOnSubscribe { output.postValue(Resources.Loading()) }
+                .subscribe({
+                    if (!it.error) output.postValue(Resources.Success(it))
+                    else output.postValue(Resources.Error(it.message, null))
+                }, {
+                    output.postValue(Resources.Error(handlingError(it), null))
+                })
+        )
         return output
     }
 }

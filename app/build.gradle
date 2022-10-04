@@ -71,6 +71,7 @@ dependencies {
 
     // glide
     implementation AndroidLibraries.glideVersion
+    implementation 'androidx.test:monitor:1.5.0'
     kapt AndroidLibraries.kaptGlide
 
     // map

@@ -72,7 +72,6 @@ class ServicesRepositoryTest {
         verify(servicesRepository).postRegister(registerFake)
     }
 
-
     @Test
     fun `When register fails, make sure to return an Error with a message from the API`() = runTest {
         val registerFake = Register(name = "abcdefgh", email = "abcdefgmai", password = "123456")
@@ -153,7 +152,7 @@ class ServicesRepositoryTest {
     }
 
     @Test
-    fun `Make sure the expected size data is correct from the actual response`() = runTest {
+    fun `When successful get List story,Make sure the expected size data is correct`() = runTest {
         launch {
             val listMock = fakerResponseStory.generateListStory()
 
@@ -178,7 +177,29 @@ class ServicesRepositoryTest {
     }
 
     @Test
-    fun `when getStoryLocation Should Not Null`() = runTest {
+    fun `When successful get List story location, Make sure data is not null`() = runTest {
+        val expectedStory = FakerListStory.generateListStory()
+        Mockito
+            .`when`(services.getStoriesLocation())
+            .thenReturn(Single.just(expectedStory))
+
+        val actualData = Single.just(expectedStory).blockingGet()
+        servicesRepository.getStoryLocation()
+
+        val observer = services.getStoriesLocation(1)
+        val testObserver = TestObserver.create<ResponseAllStories>()
+        observer.subscribe(testObserver)
+
+        testObserver.awaitCount(1)
+        testObserver.assertComplete()
+        testObserver.assertResult(expectedStory)
+
+        Assert.assertNotNull(actualData)
+        verify(servicesRepository).getStoryLocation()
+    }
+
+    @Test
+    fun `When successful get List story location,Make sure the expected size data is correct`() = runTest {
         val expectedStory = FakerListStory.generateListStory()
         Mockito
             .`when`(services.getStoriesLocation())

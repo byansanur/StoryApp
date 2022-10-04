@@ -118,42 +118,42 @@ class FragmentHome : Fragment(), AdapterStoryPaging.StoryClickListener {
             delay(2000)
             dialog.dismiss()
             binding.swipeRefresh.isRefreshing = false
-            sharedViewModel.getListStory(0)
-                .distinctUntilChanged()
-                .collectLatest { valueData ->
-                    adapterStoryPaging.submitData(valueData)
-                }
+            if (utilsConnect.isConnectedToInternet()) {
+                sharedViewModel.getListStory(0)
+                    .distinctUntilChanged()
+                    .collectLatest { valueData ->
+                        adapterStoryPaging.submitData(valueData)
+                    }
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
         }
         addLoadAdapterOther()
     }
 
     private fun addLoadAdapterOther() {
-        if (utilsConnect.isConnectedToInternet()) {
-            adapterStoryPaging.addLoadStateListener {
-                when(it.source.refresh) {
-                    is LoadState.Loading -> {}
-                    is LoadState.NotLoading -> {}
-                    is LoadState.Error -> {
-                        val e = it.refresh as LoadState.Error
-                        val msgErr = when (e.error) {
-                            is UnknownHostException -> {
-                                "Unknown Host"
-                            }
-                            is SocketTimeoutException -> {
-                                "Request Timeout"
-                            }
-                            is Exception -> {
-                                handlingError(e.error)
-                            }
-                            else -> "Error ${e.error.message}"
+        adapterStoryPaging.addLoadStateListener {
+            when(it.source.refresh) {
+                is LoadState.Loading -> {}
+                is LoadState.NotLoading -> {}
+                is LoadState.Error -> {
+                    val e = it.refresh as LoadState.Error
+                    val msgErr = when (e.error) {
+                        is UnknownHostException -> {
+                            "Unknown Host"
                         }
-                        Toast.makeText(requireContext(), msgErr, Toast.LENGTH_SHORT).show()
+                        is SocketTimeoutException -> {
+                            "Request Timeout"
+                        }
+                        is Exception -> {
+                            handlingError(e.error)
+                        }
+                        else -> "Error ${e.error.message}"
                     }
+                    Toast.makeText(requireContext(), msgErr, Toast.LENGTH_SHORT).show()
                 }
             }
-        } else {
-            Toast.makeText(requireContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
         }
     }
 

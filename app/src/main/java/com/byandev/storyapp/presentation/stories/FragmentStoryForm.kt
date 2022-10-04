@@ -17,6 +17,7 @@ import com.byandev.storyapp.R
 import com.byandev.storyapp.databinding.FragmentStoryFormBinding
 import com.byandev.storyapp.di.GlideApp
 import com.byandev.storyapp.di.LocationUtils
+import com.byandev.storyapp.di.UtilsConnect
 import com.byandev.storyapp.presentation.SharedViewModel
 import com.byandev.storyapp.utils.PICK_IMAGE
 import com.byandev.storyapp.utils.Resources
@@ -60,6 +61,8 @@ class FragmentStoryForm : Fragment() {
     @Inject
     lateinit var locationUtils: LocationUtils
 
+    @Inject
+    lateinit var utilsConnect: UtilsConnect
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -107,7 +110,11 @@ class FragmentStoryForm : Fragment() {
                 lifecycleScope.launch {
                     dialogLoading(dialog)
                     delay(2000)
-                    postingStory()
+                    if (utilsConnect.isConnectedToInternet()) postingStory()
+                    else {
+                        Toast.makeText(requireContext(), getString(R.string.no_internet), Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
                 }
             }
         }

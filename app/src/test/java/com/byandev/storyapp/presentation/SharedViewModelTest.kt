@@ -44,7 +44,7 @@ class SharedViewModelTest {
     @Before
     fun setUp() {
         servicesRepository = mock(ServicesRepository::class.java)
-        sharedViewModel = Mockito.spy(SharedViewModel(servicesRepository))
+        sharedViewModel = SharedViewModel(servicesRepository)
 
         fakeResponseBase = FakerResponseBase
         fakeResponseLogin = FakerResponseLogin
@@ -99,7 +99,7 @@ class SharedViewModelTest {
             val actual : Flow<PagingData<Story>> = sharedViewModel.getListStory(0)
 
             assertNotNull(actual.collectLatest { it })
-            verify(sharedViewModel).getListStory(0)
+            verify(servicesRepository).getListStory(0)
         }
 
     }

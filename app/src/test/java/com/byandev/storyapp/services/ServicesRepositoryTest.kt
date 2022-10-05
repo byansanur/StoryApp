@@ -3,24 +3,20 @@ package com.byandev.storyapp.services
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingSource
 import com.byandev.storyapp.data.model.*
-import com.byandev.storyapp.utils.FakerListStory
-import com.byandev.storyapp.utils.FakerResponseBase
-import com.byandev.storyapp.utils.FakerResponseLogin
-import com.byandev.storyapp.utils.convertRequestBody
-import io.reactivex.rxjava3.android.plugins.RxAndroidPlugins
+import com.byandev.storyapp.utils.*
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.observers.TestObserver
-import io.reactivex.rxjava3.plugins.RxJavaPlugins
-import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
-import org.junit.*
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
 import java.io.File
 import java.io.IOException
 
@@ -30,6 +26,9 @@ class ServicesRepositoryTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    val rxImmediateSchedulerRule = RxImmediateSchedulerRule()
 
     private lateinit var services: ApiServices
     private lateinit var servicesRepository: ServicesRepository
@@ -41,10 +40,7 @@ class ServicesRepositoryTest {
     @Before
     fun setUp() {
         services = mock(ApiServices::class.java)
-        servicesRepository = mock(ServicesRepository::class.java)
-
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
-        RxJavaPlugins.setInitIoSchedulerHandler { Schedulers.trampoline() }
+        servicesRepository = ServicesRepository(services)
 
         fakerResponseBase = FakerResponseBase
         fakerResponseLogin = FakerResponseLogin
@@ -59,6 +55,7 @@ class ServicesRepositoryTest {
             .`when`(services.postRegisterNewUser(registerFake))
             .thenReturn(Single.just(response))
 
+        val actualData = Single.just(response).blockingGet()
         servicesRepository.postRegister(registerFake)
 
         val observer = services.postRegisterNewUser(registerFake)
@@ -67,9 +64,10 @@ class ServicesRepositoryTest {
 
         testObserver.awaitCount(1)
         testObserver.assertComplete()
-        testObserver.assertResult(response)
+        testObserver.assertResult(actualData)
 
-        verify(servicesRepository).postRegister(registerFake)
+        Assert.assertNotNull(actualData)
+        Assert.assertEquals(response, actualData)
     }
 
     @Test
@@ -80,6 +78,7 @@ class ServicesRepositoryTest {
             .`when`(services.postRegisterNewUser(registerFake))
             .thenReturn(Single.just(response).doOnError { IOException(response.message) })
 
+        val actualData = Single.just(response).blockingGet()
         servicesRepository.postRegister(registerFake)
 
         val observer = services.postRegisterNewUser(registerFake)
@@ -88,9 +87,10 @@ class ServicesRepositoryTest {
 
         testObserver.awaitCount(1)
         testObserver.assertComplete()
-        testObserver.assertResult(response)
+        testObserver.assertResult(actualData)
 
-        verify(servicesRepository).postRegister(registerFake)
+        Assert.assertNotNull(actualData)
+        Assert.assertEquals(response, actualData)
     }
 
     @Test
@@ -101,6 +101,7 @@ class ServicesRepositoryTest {
             .`when`(services.postLoginUser(loginFake))
             .thenReturn(Single.just(response))
 
+        val actualData = Single.just(response).blockingGet()
         servicesRepository.postLogin(loginFake)
 
         val observer = services.postLoginUser(loginFake)
@@ -109,9 +110,10 @@ class ServicesRepositoryTest {
 
         testObserver.awaitCount(1)
         testObserver.assertComplete()
-        testObserver.assertResult(response)
+        testObserver.assertResult(actualData)
 
-        verify(servicesRepository).postLogin(loginFake)
+        Assert.assertNotNull(actualData)
+        Assert.assertEquals(response, actualData)
     }
 
     @Test
@@ -122,6 +124,7 @@ class ServicesRepositoryTest {
             .`when`(services.postLoginUser(loginFake))
             .thenReturn(Single.just(response).doOnError { IOException(response.message) })
 
+        val actualData = Single.just(response).blockingGet()
         servicesRepository.postLogin(loginFake)
 
         val observer = services.postLoginUser(loginFake)
@@ -130,9 +133,10 @@ class ServicesRepositoryTest {
 
         testObserver.awaitCount(1)
         testObserver.assertComplete()
-        testObserver.assertResult(response)
+        testObserver.assertResult(actualData)
 
-        verify(servicesRepository).postLogin(loginFake)
+        Assert.assertNotNull(actualData)
+        Assert.assertEquals(response, actualData)
     }
 
     @Test
@@ -192,10 +196,10 @@ class ServicesRepositoryTest {
 
         testObserver.awaitCount(1)
         testObserver.assertComplete()
-        testObserver.assertResult(expectedStory)
+        testObserver.assertResult(actualData)
 
         Assert.assertNotNull(actualData)
-        verify(servicesRepository).getStoryLocation()
+        Assert.assertEquals(expectedStory, actualData)
     }
 
     @Test
@@ -214,11 +218,10 @@ class ServicesRepositoryTest {
 
         testObserver.awaitCount(1)
         testObserver.assertComplete()
-        testObserver.assertResult(expectedStory)
+        testObserver.assertResult(actualData)
 
         Assert.assertNotNull(actualData)
         Assert.assertEquals(expectedStory.listStory.size, actualData.listStory.size)
-        verify(servicesRepository).getStoryLocation()
     }
 
     @Test
@@ -246,7 +249,7 @@ class ServicesRepositoryTest {
         testObserver.assertResult(expectedData)
 
         Assert.assertNotNull(actualData)
-        verify(servicesRepository).postStories(description, filePhoto, null, null)
+        Assert.assertEquals(expectedData, actualData)
     }
 
     @Test
@@ -276,12 +279,7 @@ class ServicesRepositoryTest {
         testObserver.assertResult(expectedData)
 
         Assert.assertNotNull(actualData)
-        verify(servicesRepository).postStories(description, filePhoto, lat, lon)
+        Assert.assertEquals(expectedData, actualData)
     }
 
-    @After
-    fun tearDown() {
-        RxJavaPlugins.reset()
-        RxAndroidPlugins.reset()
-    }
 }

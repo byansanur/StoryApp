@@ -1,5 +1,6 @@
 package com.byandev.storyapp.presentation.home
 
+import androidx.core.content.ContextCompat
 import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions
@@ -17,7 +18,6 @@ import org.junit.Test
 
 @MediumTest
 @HiltAndroidTest
-@ExperimentalCoroutinesApi
 class FragmentHomeTest {
 
     @get:Rule
@@ -35,6 +35,6 @@ class FragmentHomeTest {
 
     @Test
     fun launchFragment() {
-        launchFragmentInHiltContainer<FragmentHome> {  }
+        launchFragmentInHiltContainer<FragmentHome>()
     }
 }

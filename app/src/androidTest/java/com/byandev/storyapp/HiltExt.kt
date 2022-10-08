@@ -30,9 +30,7 @@ inline fun <reified T: Fragment> launchFragmentInHiltContainer(
     )
 
     launch<HiltTestActivity>(mainActivityIntent).onActivity { activity ->
-//        fragmentFactory?.let {
-//            activity.supportFragmentManager.fragmentFactory = it
-//        }
+
         val fragment = activity
             .supportFragmentManager
             .fragmentFactory

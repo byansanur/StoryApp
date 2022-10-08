@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.byandev.storyapp">
 
-    <application>
+    <application
+        android:theme="@style/Theme.StoryApp.Starting">
         <activity
             android:name=".HiltTestActivity"
             android:exported="false"/>

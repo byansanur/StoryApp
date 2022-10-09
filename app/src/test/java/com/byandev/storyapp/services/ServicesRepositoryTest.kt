@@ -55,8 +55,7 @@ class ServicesRepositoryTest {
             .`when`(services.postRegisterNewUser(registerFake))
             .thenReturn(Single.just(response))
 
-        val actualData = Single.just(response).blockingGet()
-        servicesRepository.postRegister(registerFake)
+        val actualData = servicesRepository.postRegister(registerFake).blockingGet()
 
         val observer = services.postRegisterNewUser(registerFake)
         val testObserver = TestObserver.create<ResponseBase>()
@@ -78,8 +77,7 @@ class ServicesRepositoryTest {
             .`when`(services.postRegisterNewUser(registerFake))
             .thenReturn(Single.just(response).doOnError { IOException(response.message) })
 
-        val actualData = Single.just(response).blockingGet()
-        servicesRepository.postRegister(registerFake)
+        val actualData = servicesRepository.postRegister(registerFake).blockingGet()
 
         val observer = services.postRegisterNewUser(registerFake)
         val testObserver = TestObserver.create<ResponseBase>()
@@ -101,8 +99,7 @@ class ServicesRepositoryTest {
             .`when`(services.postLoginUser(loginFake))
             .thenReturn(Single.just(response))
 
-        val actualData = Single.just(response).blockingGet()
-        servicesRepository.postLogin(loginFake)
+        val actualData = servicesRepository.postLogin(loginFake).blockingGet()
 
         val observer = services.postLoginUser(loginFake)
         val testObserver = TestObserver.create<ResponseLogin>()
@@ -124,8 +121,7 @@ class ServicesRepositoryTest {
             .`when`(services.postLoginUser(loginFake))
             .thenReturn(Single.just(response).doOnError { IOException(response.message) })
 
-        val actualData = Single.just(response).blockingGet()
-        servicesRepository.postLogin(loginFake)
+        val actualData = servicesRepository.postLogin(loginFake).blockingGet()
 
         val observer = services.postLoginUser(loginFake)
         val testObserver = TestObserver.create<ResponseLogin>()
@@ -187,8 +183,7 @@ class ServicesRepositoryTest {
             .`when`(services.getStoriesLocation())
             .thenReturn(Single.just(expectedStory))
 
-        val actualData = Single.just(expectedStory).blockingGet()
-        servicesRepository.getStoryLocation()
+        val actualData = servicesRepository.getStoryLocation().blockingGet()
 
         val observer = services.getStoriesLocation(1)
         val testObserver = TestObserver.create<ResponseAllStories>()
@@ -209,8 +204,7 @@ class ServicesRepositoryTest {
             .`when`(services.getStoriesLocation())
             .thenReturn(Single.just(expectedStory))
 
-        val actualData = Single.just(expectedStory).blockingGet()
-        servicesRepository.getStoryLocation()
+        val actualData = servicesRepository.getStoryLocation().blockingGet()
 
         val observer = services.getStoriesLocation(1)
         val testObserver = TestObserver.create<ResponseAllStories>()
@@ -233,12 +227,11 @@ class ServicesRepositoryTest {
             .`when`(services.postStories(description, filePhoto, null, null))
             .thenReturn(Single.just(expectedData))
 
-        val actualData = Single.just(expectedData).blockingGet()
-        servicesRepository.postStories(
+        val actualData = servicesRepository.postStories(
             description = description,
             photo = filePhoto,
             lat = null, lon = null
-        )
+        ).blockingGet()
 
         val observer = services.postStories(description, filePhoto, null, null)
         val testObserver = TestObserver.create<ResponseBase>()
@@ -263,12 +256,11 @@ class ServicesRepositoryTest {
             .`when`(services.postStories(description, filePhoto, lat, lon))
             .thenReturn(Single.just(expectedData))
 
-        val actualData = Single.just(expectedData).blockingGet()
-        servicesRepository.postStories(
+        val actualData = servicesRepository.postStories(
             description = description,
             photo = filePhoto,
             lat = lat, lon = lon
-        )
+        ).blockingGet()
 
         val observer = services.postStories(description, filePhoto, lat, lon)
         val testObserver = TestObserver.create<ResponseBase>()

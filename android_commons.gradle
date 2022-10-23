@@ -1,0 +1,31 @@
+//plugins {
+//    id 'kotlin-android'
+//}
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion ConfigData.compileSdkVersion
+    defaultConfig {
+        minSdkVersion ConfigData.minSdkVersion
+        targetSdkVersion ConfigData.targetSdkVersion
+        versionCode ConfigData.versionCodes
+        versionName ConfigData.versionName
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+        }
+    }
+    viewBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    implementation AndroidLibraries.kotlin
+}

@@ -47,6 +47,8 @@ android {
 
 dependencies {
 
+    implementation project(Modules.common)
+
     implementation AndroidLibraries.coreKtx
     implementation AndroidLibraries.appCompat
     implementation AndroidLibraries.legacySupportV4

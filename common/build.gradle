@@ -1,0 +1,19 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: '../android_commons.gradle'
+
+
+dependencies {
+    implementation AndroidLibraries.appCompat
+    implementation AndroidLibraries.navigation
+    implementation AndroidLibraries.navigationUi
+    implementation AndroidLibraries.coroutinesCore
+    implementation AndroidLibraries.coroutinesAndroid
+    // lifecycle
+    implementation AndroidLibraries.lifecycleService
+    implementation AndroidLibraries.lifecycleViewmodelKtx
+    implementation AndroidLibraries.lifecycleCommonJava8
+    implementation 'androidx.databinding:viewbinding:4.2.2'
+}

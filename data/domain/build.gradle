@@ -1,0 +1,14 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+apply from: '../../android_commons.gradle'
+
+dependencies {
+    implementation project(Modules.repository)
+    // ANDROID
+    implementation AndroidLibraries.coroutinesCore
+    implementation AndroidLibraries.coroutinesAndroid
+    implementation AndroidLibraries.lifecycleService
+}

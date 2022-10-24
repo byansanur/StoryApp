@@ -83,6 +83,7 @@ object AndroidLibraries {
     const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
     const val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava3Version}"
     const val rxAndroid = "io.reactivex.rxjava3:rxandroid:${Versions.rxAndroidVersion}"
+    const val lifecycleExtension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCylcleVersion}"
     const val lifecycleService = "androidx.lifecycle:lifecycle-service:${Versions.lifeCylcleVersion}"
     const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCylcleVersion}"
     const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifeCylcleVersion}"

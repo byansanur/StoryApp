@@ -1,1 +1,5 @@
 include ':app', ':common'
+include ':data:model'
+include ':data:remote'
+include ':data:domain'
+include ':data:repository'

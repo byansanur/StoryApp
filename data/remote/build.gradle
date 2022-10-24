@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+apply from: '../../android_commons.gradle'
+
+android {
+    defaultConfig {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        resValue "string", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
+    }
+}
+
+dependencies {
+    // KOTLIN
+    implementation AndroidLibraries.kotlin
+
+    // retrofit
+    implementation AndroidLibraries.retrofit
+    implementation AndroidLibraries.okHttp
+    implementation AndroidLibraries.retrofitRxJava3
+
+    // gson
+    implementation AndroidLibraries.gson
+
+    // rx
+    implementation AndroidLibraries.rxJava
+    implementation AndroidLibraries.rxAndroid
+
+    // lifecycle
+    implementation AndroidLibraries.lifecycleService
+    implementation AndroidLibraries.lifecycleViewmodelKtx
+    implementation AndroidLibraries.lifecycleCommonJava8
+
+    // coroutines
+    implementation AndroidLibraries.coroutinesCore
+    implementation AndroidLibraries.coroutinesAndroid
+
+    // DATA MODULE
+    implementation project(Modules.model)
+}

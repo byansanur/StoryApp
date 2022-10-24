@@ -1,0 +1,53 @@
+/**
+ * Feature dependencies
+ */
+apply plugin: 'com.android.library'
+//apply from: '../../android_core_dependencies.gradle'
+apply from: '../../android_commons.gradle'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation AndroidLibraries.coreKtx
+    implementation AndroidLibraries.appCompat
+    implementation AndroidLibraries.legacySupportV4
+    implementation AndroidLibraries.materialDesign
+    implementation AndroidLibraries.constraintLayout
+    implementation AndroidLibraries.cardView
+    implementation AndroidLibraries.recyclerView
+    implementation AndroidLibraries.circleImageView
+    implementation AndroidLibraries.swipeRefresh
+
+    // lottie
+    implementation AndroidLibraries.lottieAnimation
+
+    // easy permission
+    implementation AndroidLibraries.easyPermission
+
+    // paging
+    implementation AndroidLibraries.pagingKtx
+    implementation AndroidLibraries.pagingRxJava
+
+    // splashScreen
+    implementation AndroidLibraries.splashScreen
+
+    implementation project(Modules.common)
+
+    implementation project(Modules.domain)
+    // KOIN (Because each feature has to handle its dependencies)
+    // glide
+    implementation AndroidLibraries.glideVersion
+    kapt AndroidLibraries.kaptGlide
+    // lifecycle
+    implementation AndroidLibraries.lifecycleService
+    implementation AndroidLibraries.lifecycleViewmodelKtx
+    implementation AndroidLibraries.lifecycleCommonJava8
+    // TEST
+    androidTestImplementation TestLibraries.junit
+    androidTestImplementation AndroidTestLibraries.espressoCoreAnroidTest
+    androidTestImplementation TestLibraries.archCoreTest
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.mockitoTest
+    testImplementation TestLibraries.mockitoInlineTest
+    testImplementation TestLibraries.archCoreTest
+}

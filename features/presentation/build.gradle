@@ -1,0 +1,9 @@
+plugins {
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: '../../android_feature_dependencies.gradle'
+
+dependencies {
+
+    implementation project(Modules.model)
+}

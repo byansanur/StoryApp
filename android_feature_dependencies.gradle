@@ -32,6 +32,10 @@ dependencies {
     implementation AndroidLibraries.pagingKtx
     implementation AndroidLibraries.pagingRxJava
 
+    // nav
+    implementation AndroidLibraries.navigation
+    implementation AndroidLibraries.navigationUi
+
     // splashScreen
     implementation AndroidLibraries.splashScreen
 

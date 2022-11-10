@@ -6,4 +6,5 @@ apply from: '../../android_feature_dependencies.gradle'
 dependencies {
 
     implementation project(Modules.model)
+    implementation AndroidLibraries.appCompat
 }

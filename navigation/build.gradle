@@ -6,7 +6,7 @@ plugins {
 apply from: '../android_commons.gradle'
 
 dependencies {
-//    implementation project(Modules.presentation)
+    implementation project(Modules.presentation)
     implementation AndroidLibraries.navigation
     implementation AndroidLibraries.navigationUi
 }

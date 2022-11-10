@@ -18,6 +18,10 @@ dependencies {
     implementation AndroidLibraries.circleImageView
     implementation AndroidLibraries.swipeRefresh
 
+    // KOIN (Because each feature has to handle its dependencies)
+    implementation AndroidLibraries.koin
+    implementation AndroidLibraries.koinViewModel
+
     // lottie
     implementation AndroidLibraries.lottieAnimation
 

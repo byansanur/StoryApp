@@ -46,6 +46,7 @@ object Versions {
     const val archCoreTestVersion = "2.1.0"
     const val kotlinCoroutinesTestVersion = "1.6.1"
     const val androidXTestVersion = "androidXTestVersion"
+    const val koin = "2.0.1"
 }
 
 object BuildPlugins {
@@ -106,6 +107,9 @@ object AndroidLibraries {
     const val playServiceMaps = "com.google.android.gms:play-services-maps:${Versions.playServiceMapVersion}"
     const val playServiceLocation = "com.google.android.gms:play-services-location:${Versions.playServiceLocationVersion}"
     const val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshVersion}"
+    // KOIN
+    val koin = "io.insert-koin:koin-android:${Versions.koin}"
+    val koinViewModel = "io.insert-koin:koin-android-viewmodel:${Versions.koin}"
 }
 
 object TestLibraries {

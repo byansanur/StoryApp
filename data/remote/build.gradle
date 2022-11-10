@@ -22,6 +22,15 @@ dependencies {
     implementation AndroidLibraries.okHttp
     implementation AndroidLibraries.retrofitRxJava3
 
+    // moshi
+    implementation AndroidLibraries.moshiCoverter
+    implementation AndroidLibraries.moshiKotlin
+    kapt AndroidLibraries.moshiKaptKotlin
+
+    // KOIN
+    implementation AndroidLibraries.koin
+    implementation AndroidLibraries.koinViewModel
+
     // gson
     implementation AndroidLibraries.gson
 
@@ -40,4 +49,5 @@ dependencies {
 
     // DATA MODULE
     implementation project(Modules.model)
+    implementation project(Modules.common)
 }

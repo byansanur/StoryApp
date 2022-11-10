@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_empty_password">Password has not empty</string>
+    <string name="error_password_more_6">Password must more than 6 character</string>
+    <string name="error_empty_email">Email has not empty</string>
+    <string name="error_invalid_email">This not valid email</string>
+    <string name="error_empty_name">Field not to be empty</string>
+</resources>

@@ -1,21 +1,23 @@
 package com.byandev.storyapp
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.byandev.storyapp.di.appComponent
+import org.koin.core.context.startKoin
 import timber.log.Timber
 
-@HiltAndroidApp
-class StoryApp : Application() {
-
-    companion object {
-        lateinit var instance: StoryApp
-            private set
-    }
+open class StoryApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        configureDi()
         if (BuildConfig.DEBUG)
             Timber.plant(Timber.DebugTree())
     }
+
+    private fun configureDi() =
+        startKoin {
+            provideComponent()
+        }
+
+    open fun provideComponent() = appComponent
 }

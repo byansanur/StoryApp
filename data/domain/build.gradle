@@ -11,4 +11,6 @@ dependencies {
     implementation AndroidLibraries.coroutinesCore
     implementation AndroidLibraries.coroutinesAndroid
     implementation AndroidLibraries.lifecycleService
+
+    implementation AndroidLibraries.koin
 }

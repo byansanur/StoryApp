@@ -10,6 +10,10 @@ dependencies {
     implementation project(Modules.remote)
     api project(Modules.model)
 
+    // KOIN
+    implementation AndroidLibraries.koin
+    implementation AndroidLibraries.koinViewModel
+
     implementation AndroidLibraries.coroutinesCore
     implementation AndroidLibraries.coroutinesAndroid
     implementation AndroidLibraries.lifecycleService

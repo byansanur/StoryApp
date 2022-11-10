@@ -16,4 +16,8 @@ dependencies {
     implementation AndroidLibraries.lifecycleViewmodelKtx
     implementation AndroidLibraries.lifecycleCommonJava8
     implementation 'androidx.databinding:viewbinding:4.2.2'
+
+    // KOIN
+    implementation AndroidLibraries.koin
+    implementation AndroidLibraries.koinViewModel
 }

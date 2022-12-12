@@ -142,15 +142,15 @@ object ConfigData {
 object Modules {
     val app = ":app"
 
-    val navigation = ":navigation"
 
     val common = ":common"
 
-    val local = ":data:local"
-    val remote = ":data:remote"
+    val domain = ":data:domain"
     val model = ":data:model"
+    val remote = ":data:remote"
     val repository = ":data:repository"
 
     val presentation = ":features:presentation"
-    val domain = ":data:domain"
+    val navigation = ":navigation"
+
 }

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="14dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.byandev.storyapp.presentation.auth.FragmentRegister">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="200dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgApp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_dicoding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/title_login_register"
+            android:textStyle="bold"
+            android:textColor="@color/blue_dicoding"
+            android:textSize="22sp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="@+id/imgApp"
+            app:layout_constraintStart_toStartOf="@id/imgApp"
+            app:layout_constraintTop_toBottomOf="@id/imgApp" />
+
+        <TextView
+            android:id="@+id/tvWelcome2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/desc_login_register"
+            android:textStyle="normal"
+            android:textColor="@color/blue_dicoding"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+
+        <TextView
+            android:id="@+id/tvSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/sign_up"
+            android:textStyle="bold"
+            android:textColor="@color/blue_dicoding"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:alpha="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcome2" />
+
+        <com.byandev.storyapp.common.utils.GeneralEditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:background="@drawable/bg_card_active"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/color_grey"
+            app:layout_constraintTop_toBottomOf="@id/tvSignUp"/>
+
+
+        <com.byandev.storyapp.common.utils.EmailEditText
+            android:id="@+id/edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/bg_card_active"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/color_grey"
+            app:layout_constraintTop_toBottomOf="@id/edtName"/>
+
+        <com.byandev.storyapp.common.utils.PasswordEditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_active"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="14dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/color_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtEmail" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textAllCaps="false"
+            android:layout_marginTop="16dp"
+            android:background="@color/blue_dicoding"
+            android:textColor="@color/white"
+            android:backgroundTintMode="src_atop"
+            android:alpha="0"
+            app:layout_constraintTop_toBottomOf="@id/edtPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/sign_in_here"
+            android:textColor="@color/black"
+            android:alpha="0"
+            app:layout_constraintTop_toBottomOf="@id/btnRegister"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

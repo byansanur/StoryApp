@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_presentation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_presentation"
+    app:startDestination="@id/fragmentHome">
 
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.byandev.storyapp.presentation.FragmentHome"
+        android:label="FragmentHome" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentIntroPermission"
+            app:destination="@id/fragmentIntroPermission" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentDetailStory"
+            app:destination="@id/fragmentDetailStory" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentMaps"
+            app:destination="@id/fragmentMaps" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.byandev.storyapp.presentation.auth.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
+            app:destination="@id/fragmentRegister" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentHome"
+            app:destination="@id/fragmentHome"
+            app:popUpTo="@id/fragmentHome"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRegister"
+        android:name="com.byandev.storyapp.presentation.auth.FragmentRegister"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/fragmentIntroPermission"
+        android:name="com.byandev.storyapp.presentation.intro.FragmentIntroPermission"
+        android:label="fragment_intro_permission"
+        tools:layout="@layout/fragment_intro_permission" >
+        <action
+            android:id="@+id/action_fragmentIntroPermission_to_fragmentHome"
+            app:destination="@id/fragmentHome"
+            app:popUpTo="@id/fragmentHome"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDetailStory"
+        android:name="com.byandev.storyapp.presentation.details.FragmentDetailStory"
+        android:label="FragmentDetailStory" >
+        <argument
+            android:name="detailStories"
+            app:argType="com.byandev.storyapp.data.model.dto.Stories" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentMaps"
+        android:name="com.byandev.storyapp.presentation.maps.FragmentMaps"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

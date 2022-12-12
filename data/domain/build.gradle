@@ -6,11 +6,18 @@ plugins {
 apply from: '../../android_commons.gradle'
 
 dependencies {
-    implementation project(Modules.repository)
+//    implementation project(Modules.repository)
     // ANDROID
     implementation AndroidLibraries.coroutinesCore
     implementation AndroidLibraries.coroutinesAndroid
     implementation AndroidLibraries.lifecycleService
 
+    implementation AndroidLibraries.pagingKtx
+    implementation AndroidLibraries.pagingRxJava
+
+    implementation AndroidLibraries.retrofit
+
     implementation AndroidLibraries.koin
+    implementation project(path: Modules.repository)
+    implementation project(path: Modules.model)
 }

@@ -5,6 +5,11 @@ apply from: '../../android_feature_dependencies.gradle'
 
 dependencies {
 
-    implementation project(Modules.model)
+//    implementation project(Modules.model)
+//    implementation project(Modules.common)
     implementation AndroidLibraries.appCompat
+
+    // map
+    implementation AndroidLibraries.playServiceMaps
+    implementation AndroidLibraries.playServiceLocation
 }

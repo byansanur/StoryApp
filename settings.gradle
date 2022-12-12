@@ -1,7 +1,1 @@
-include ':app', ':common'
-include ':data:model'
-include ':data:remote'
-include ':data:domain'
-include ':data:repository'
-include ':navigation'
-include ':features:presentation'
+include ':app', ':common', ':data:model', ':data:remote', ':data:domain', ':data:repository', ':navigation', ':features:presentation'

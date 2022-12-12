@@ -6,6 +6,7 @@ apply plugin: 'com.android.library'
 apply from: '../../android_commons.gradle'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
 dependencies {
     implementation AndroidLibraries.coreKtx
@@ -21,6 +22,9 @@ dependencies {
     // KOIN (Because each feature has to handle its dependencies)
     implementation AndroidLibraries.koin
     implementation AndroidLibraries.koinViewModel
+
+    // photoView
+    implementation AndroidLibraries.photoView
 
     // lottie
     implementation AndroidLibraries.lottieAnimation
@@ -40,9 +44,44 @@ dependencies {
     implementation AndroidLibraries.splashScreen
 
     implementation project(Modules.common)
-
     implementation project(Modules.domain)
+    /*
+    val model = ":data:model"
+    val remote = ":data:remote"
+    val repository = ":data:repository"
+
+    val presentation = ":features:presentation"
+    val navigation = ":navigation"
+     */
+    implementation project(Modules.model)
+    implementation project(Modules.remote)
+    implementation project(Modules.repository)
+
+    // map
+    implementation AndroidLibraries.playServiceMaps
+    implementation AndroidLibraries.playServiceLocation
+
+    // gson
+    implementation AndroidLibraries.gson
+
     // KOIN (Because each feature has to handle its dependencies)
+    // KOIN
+    implementation AndroidLibraries.koin
+    implementation AndroidLibraries.koinViewModel
+
+    implementation AndroidLibraries.retrofit
+    implementation AndroidLibraries.okHttp
+
+    // camera
+    implementation AndroidLibraries.cameraCore
+    implementation AndroidLibraries.camera2
+    implementation AndroidLibraries.cameraLifecycle
+    implementation AndroidLibraries.cameraView
+    implementation AndroidLibraries.cameraExtension
+
+    //compress image
+    implementation AndroidLibraries.compressImg
+
     // glide
     implementation AndroidLibraries.glideVersion
     kapt AndroidLibraries.kaptGlide

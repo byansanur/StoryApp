@@ -15,9 +15,9 @@ interface ApiServices {
     ): Response<ResponseBase>
 
     @POST("login")
-    fun postLoginUser(
+    suspend fun postLoginUser(
         @Body request: Login
-    ): Single<ResponseLogin>
+    ): Response<ResponseLogin>
 
     @Multipart
     @POST("stories")
@@ -26,14 +26,14 @@ interface ApiServices {
         @Part image: MultipartBody.Part,
         @Part("lat") lat: RequestBody? = null,
         @Part("lon") lon: RequestBody? = null
-    ) : Single<ResponseBase>
+    ) : Response<ResponseBase>
 
     @GET("stories")
     suspend fun getAllStories(
         @Query("page") page: Int,
         @Query("size") size: Int,
         @Query("location") location: Int?
-    ) : ResponseAllStories
+    ) : Response<ResponseAllStories>
 
     @GET("stories")
     fun getStoriesLocation(

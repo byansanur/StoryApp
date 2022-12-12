@@ -5,4 +5,8 @@
     <string name="error_empty_email">Email has not empty</string>
     <string name="error_invalid_email">This not valid email</string>
     <string name="error_empty_name">Field not to be empty</string>
+    <string name="activate_gps">Please activate your GPS in order to use this feature..</string>
+    <string name="allow_gps">Please allow the app to access your location, to use this feature..</string>
+    <string name="unknown_place">Unknown place</string>
+    <string name="error_in_app">An error occurred in the application</string>
 </resources>

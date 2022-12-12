@@ -2,139 +2,138 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/story_navigation"
     app:startDestination="@id/fragmentHome">
 
-    <fragment
-        android:id="@+id/fragmentLogin"
-        android:name="com.byandev.storyapp.presentation.login_register.FragmentLogin"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
-            app:destination="@id/fragmentRegister"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right"/>
-        <action
-            android:id="@+id/action_fragmentLogin_to_fragmentHome"
-            app:destination="@id/fragmentHome"
-            app:popUpTo="@id/fragmentHome"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right"/>
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentRegister"
-        android:name="com.byandev.storyapp.presentation.login_register.FragmentRegister"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
-    <fragment
-        android:id="@+id/fragmentHome"
-        android:name="com.byandev.storyapp.presentation.home.FragmentHome"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentLogin"
-            app:destination="@id/fragmentLogin"
-            app:popUpTo="@id/fragmentLogin"
-            app:popUpToInclusive="true"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right"/>
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentIntroPermission"
-            app:destination="@id/fragmentIntroPermission"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right"/>
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentStoryForm"
-            app:destination="@id/fragmentStoryForm"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right"/>
-        <action
-            android:id="@+id/action_fragmentHome_to_fragmentDetailStory"
-            app:destination="@id/fragmentDetailStory"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right"/>
-        <action
-            android:id="@+id/action_fragmentHome_to_mapsFragment"
-            app:destination="@id/mapsFragment"
-            app:popUpTo="@id/mapsFragment"
-            app:popUpToInclusive="true"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentIntroPermission"
-        android:name="com.byandev.storyapp.presentation.FragmentIntroPermission"
-        android:label="fragment_intro_permission"
-        tools:layout="@layout/fragment_intro_permission" >
-        <action
-            android:id="@+id/action_fragmentIntroPermission_to_fragmentHome"
-            app:destination="@id/fragmentHome"
-            app:popUpTo="@id/fragmentHome"
-            app:popUpToInclusive="true"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right"/>
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentCamera"
-        android:name="com.byandev.storyapp.presentation.stories.camera.FragmentCamera"
-        android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
-    <fragment
-        android:id="@+id/fragmentGallery"
-        android:name="com.byandev.storyapp.presentation.stories.gallery.FragmentGallery"
-        android:label="fragment_gallery"
-        tools:layout="@layout/fragment_gallery" />
-    <fragment
-        android:id="@+id/fragmentStoryForm"
-        android:name="com.byandev.storyapp.presentation.stories.FragmentStoryForm"
-        android:label="activity_story_form"
-        tools:layout="@layout/fragment_story_form" >
-        <action
-            android:id="@+id/action_fragmentStoryForm_to_fragmentAddStories"
-            app:destination="@id/fragmentAddStories"
-            app:enterAnim="@anim/enter_form_right"
-            app:exitAnim="@anim/exit_to_right"
-            app:popEnterAnim="@anim/enter_form_left"
-            app:popExitAnim="@anim/exit_to_right"/>
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentAddStories"
-        android:name="com.byandev.storyapp.presentation.stories.FragmentAddStories"
-        android:label="fragment_add_stories"
-        tools:layout="@layout/fragment_add_stories" />
-    <fragment
-        android:id="@+id/fragmentDetailStory"
-        android:name="com.byandev.storyapp.presentation.details.FragmentDetailStory"
-        android:label="fragment_detail_story"
-        tools:layout="@layout/fragment_detail_story" >
-        <argument
-            android:name="story"
-            app:argType="com.byandev.storyapp.data.model.Story" />
-    </fragment>
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.byandev.storyapp.presentation.map_view.FragmentMaps"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" >
-        <action
-            android:id="@+id/action_mapsFragment_to_fragmentDetailStory"
-            app:destination="@id/fragmentDetailStory" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentLogin"-->
+<!--        android:name="com.byandev.storyapp.presentation.login_register.FragmentLogin"-->
+<!--        android:label="fragment_login"-->
+<!--        tools:layout="@layout/fragment_login" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentLogin_to_fragmentRegister"-->
+<!--            app:destination="@id/fragmentRegister"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right"/>-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentLogin_to_fragmentHome"-->
+<!--            app:destination="@id/fragmentHome"-->
+<!--            app:popUpTo="@id/fragmentHome"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right"/>-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentRegister"-->
+<!--        android:name="com.byandev.storyapp.presentation.login_register.FragmentRegister"-->
+<!--        android:label="fragment_register"-->
+<!--        tools:layout="@layout/fragment_register" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentHome"-->
+<!--        android:name="com.byandev.storyapp.presentation.home.FragmentHome"-->
+<!--        android:label="fragment_home"-->
+<!--        tools:layout="@layout/fragment_home" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentHome_to_fragmentLogin"-->
+<!--            app:destination="@id/fragmentLogin"-->
+<!--            app:popUpTo="@id/fragmentLogin"-->
+<!--            app:popUpToInclusive="true"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right"/>-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentHome_to_fragmentIntroPermission"-->
+<!--            app:destination="@id/fragmentIntroPermission"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right"/>-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentHome_to_fragmentStoryForm"-->
+<!--            app:destination="@id/fragmentStoryForm"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right"/>-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentHome_to_fragmentDetailStory"-->
+<!--            app:destination="@id/fragmentDetailStory"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right"/>-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentHome_to_mapsFragment"-->
+<!--            app:destination="@id/mapsFragment"-->
+<!--            app:popUpTo="@id/mapsFragment"-->
+<!--            app:popUpToInclusive="true"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentIntroPermission"-->
+<!--        android:name="com.byandev.storyapp.presentation.FragmentIntroPermission"-->
+<!--        android:label="fragment_intro_permission"-->
+<!--        tools:layout="@layout/fragment_intro_permission" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentIntroPermission_to_fragmentHome"-->
+<!--            app:destination="@id/fragmentHome"-->
+<!--            app:popUpTo="@id/fragmentHome"-->
+<!--            app:popUpToInclusive="true"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right"/>-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentCamera"-->
+<!--        android:name="com.byandev.storyapp.presentation.stories.camera.FragmentCamera"-->
+<!--        android:label="fragment_camera"-->
+<!--        tools:layout="@layout/fragment_camera" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentGallery"-->
+<!--        android:name="com.byandev.storyapp.presentation.stories.gallery.FragmentGallery"-->
+<!--        android:label="fragment_gallery"-->
+<!--        tools:layout="@layout/fragment_gallery" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentStoryForm"-->
+<!--        android:name="com.byandev.storyapp.presentation.stories.FragmentStoryForm"-->
+<!--        android:label="activity_story_form"-->
+<!--        tools:layout="@layout/fragment_story_form" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_fragmentStoryForm_to_fragmentAddStories"-->
+<!--            app:destination="@id/fragmentAddStories"-->
+<!--            app:enterAnim="@anim/enter_form_right"-->
+<!--            app:exitAnim="@anim/exit_to_right"-->
+<!--            app:popEnterAnim="@anim/enter_form_left"-->
+<!--            app:popExitAnim="@anim/exit_to_right"/>-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentAddStories"-->
+<!--        android:name="com.byandev.storyapp.presentation.stories.FragmentAddStories"-->
+<!--        android:label="fragment_add_stories"-->
+<!--        tools:layout="@layout/fragment_add_stories" />-->
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentDetailStory"-->
+<!--        android:name="com.byandev.storyapp.presentation.details.FragmentDetailStory"-->
+<!--        android:label="fragment_detail_story"-->
+<!--        tools:layout="@layout/fragment_detail_story" >-->
+<!--        <argument-->
+<!--            android:name="story"-->
+<!--            app:argType="com.byandev.storyapp.data.model.Story" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/mapsFragment"-->
+<!--        android:name="com.byandev.storyapp.presentation.map_view.FragmentMaps"-->
+<!--        android:label="fragment_maps"-->
+<!--        tools:layout="@layout/fragment_maps" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_mapsFragment_to_fragmentDetailStory"-->
+<!--            app:destination="@id/fragmentDetailStory" />-->
+<!--    </fragment>-->
 </navigation>

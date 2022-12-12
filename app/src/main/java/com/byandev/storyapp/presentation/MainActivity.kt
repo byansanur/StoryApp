@@ -9,9 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.byandev.storyapp.R
 import com.byandev.storyapp.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             Log.e("TAG", "onDestinationChanged: "+destination.label);
 
-            if (destination.id == R.id.fragmentHome || destination.id == R.id.mapsFragment) {
+            if (destination.id == com.byandev.storyapp.presentation.R.id.fragmentHome || destination.id == com.byandev.storyapp.presentation.R.id.fragmentMaps) {
                 binding.toolbar.visibility = View.VISIBLE
                 setSupportActionBar(binding.toolbar)
             } else {

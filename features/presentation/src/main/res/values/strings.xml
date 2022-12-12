@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_login_register">Welcome Developers</string>
+    <string name="desc_login_register">Create impact and post your story in our platform</string>
+    <string name="email">mail</string>
+    <string name="password">password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="login">Login</string>
+    <string name="register_here">Register here</string>
+    <string name="remember_me">Remember me</string>
+    <string name="register">Register</string>
+    <string name="sign_up">Sign up</string>
+    <string name="name">name</string>
+    <string name="sign_in_here">Sign In here</string>
+    <string name="time_ago">Ago</string>
+    <string name="user_profile">user profile</string>
+    <string name="username">username</string>
+    <string name="story_image">story image</string>
+    <string name="error_message">Error Message....</string>
+    <string name="retry">Retry</string>
+    <string name="no_internet">No Internet Available</string>
+    <string name="give_app_permission">Give App Permission</string>
+    <string name="maps">maps</string>
+    <string name="account">Account</string>
+    <string name="logout">logout</string>
+    <string name="logout_message">Quit the app?</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="your_location">Your location</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="failed_to_load_photo">Failed to load photo</string>
+    <string name="check_permission_again">Please check the app permissions again</string>
+    <string name="failed_access_camera">Application failed to access camera</string>
+    <string name="add_story">Add story</string>
+    <string name="camera">CAMERA</string>
+    <string name="gallery">GALLERY</string>
+    <string name="image_to_add_story">image to add story</string>
+    <string name="write_your_caption_here">write your caption here…</string>
+    <string name="add_location_in_yor_post">Add Location in yor post</string>
+    <string name="post">Post</string>
+    <string name="success_add_story">Success! story was added…</string>
+</resources>

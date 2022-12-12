@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.byandev.storyapp.presentation.stories.FragmentStoryForm">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_round_arrow_back_24"
+        app:title="@string/add_story"
+        app:titleTextColor="@color/blue_dicoding" />
+
+    <ImageView
+        android:id="@+id/imgPreview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="14dp"
+        android:background="@drawable/ic_round_add_a_photo_24"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/image_to_add_story"/>
+
+    <com.byandev.storyapp.common.utils.GeneralEditText
+        android:id="@+id/edtCaption"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="@string/write_your_caption_here"
+        android:layout_marginHorizontal="14dp"
+        android:background="@android:color/white"
+        android:maxEms="140"
+        android:maxLength="140"
+        android:gravity="top"
+        android:textColor="@color/black"
+        android:textColorHint="@color/color_grey"
+        app:layout_constraintTop_toTopOf="@id/imgPreview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgPreview"
+        app:layout_constraintBottom_toBottomOf="@id/imgPreview"/>
+
+    <Switch
+        android:id="@+id/switchLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/add_location_in_yor_post"
+        android:layout_marginTop="14dp"
+        android:textColor="@color/black"
+        android:thumbTint="@drawable/switch_thumb_selector"
+        android:trackTint="@drawable/switch_track_selector"
+        app:layout_constraintTop_toBottomOf="@id/imgPreview"
+        app:layout_constraintStart_toStartOf="@id/imgPreview"
+        app:layout_constraintEnd_toEndOf="@id/edtCaption"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Button
+        android:id="@+id/btnPostStory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:text="@string/post"
+        android:textAllCaps="false"
+        android:background="@color/blue_dicoding"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,12 +7,17 @@ apply from: '../../android_commons.gradle'
 
 dependencies {
     // MODULES
-    implementation project(Modules.remote)
-    api project(Modules.model)
+    implementation project(path: Modules.remote)
+    implementation project(path: Modules.model)
 
     // KOIN
     implementation AndroidLibraries.koin
     implementation AndroidLibraries.koinViewModel
+
+    // retrofit
+    implementation AndroidLibraries.retrofit
+    implementation AndroidLibraries.okHttp
+    implementation AndroidLibraries.retrofitRxJava3
 
     implementation AndroidLibraries.coroutinesCore
     implementation AndroidLibraries.coroutinesAndroid

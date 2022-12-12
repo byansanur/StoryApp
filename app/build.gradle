@@ -2,20 +2,17 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+//    id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
+apply from: '../android_commons.gradle'
 
 android {
     compileSdk ConfigData.compileSdkVersion
 
     defaultConfig {
         applicationId ConfigData.applicationId
-        minSdk ConfigData.minSdkVersion
-        targetSdk ConfigData.targetSdkVersion
-        versionCode ConfigData.versionCodes
-        versionName ConfigData.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -27,19 +24,7 @@ android {
 
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+
     buildFeatures {
         viewBinding true
     }
@@ -47,110 +32,33 @@ android {
 
 dependencies {
 
+    // COMMON
     implementation project(Modules.common)
-
+    // DATA modules
     implementation project(Modules.remote)
     implementation project(Modules.repository)
     implementation project(Modules.domain)
+    // FEATURE module
+    implementation project(Modules.presentation)
+    // NAVIGATION
+    implementation project(Modules.navigation)
+    implementation AndroidLibraries.navigation
+    implementation AndroidLibraries.navigationUi
 
     implementation AndroidLibraries.coreKtx
     implementation AndroidLibraries.appCompat
     implementation AndroidLibraries.legacySupportV4
     implementation AndroidLibraries.materialDesign
     implementation AndroidLibraries.constraintLayout
-    implementation AndroidLibraries.cardView
-    implementation AndroidLibraries.recyclerView
-    implementation AndroidLibraries.circleImageView
-    implementation AndroidLibraries.swipeRefresh
+    implementation AndroidLibraries.splashScreen
 
     // KOIN
     implementation AndroidLibraries.koin
     implementation AndroidLibraries.koinViewModel
-
-    // lottie
-    implementation AndroidLibraries.lottieAnimation
-
-    // easy permission
-    implementation AndroidLibraries.easyPermission
 
     // Timber
     implementation AndroidLibraries.timber
 
     // fragment ktx
     implementation AndroidLibraries.fragmentKtx
-
-    // glide
-    implementation AndroidLibraries.glideVersion
-    kapt AndroidLibraries.kaptGlide
-
-    // map
-    implementation AndroidLibraries.playServiceMaps
-    implementation AndroidLibraries.playServiceLocation
-
-    // retrofit
-    implementation AndroidLibraries.retrofit
-    implementation AndroidLibraries.okHttp
-    implementation AndroidLibraries.retrofitRxJava3
-
-    // gson
-    implementation AndroidLibraries.gson
-
-    // moshi
-    implementation AndroidLibraries.moshiCoverter
-    implementation AndroidLibraries.moshiKotlin
-    kapt AndroidLibraries.moshiKaptKotlin
-
-    // rx
-    implementation AndroidLibraries.rxJava
-    implementation AndroidLibraries.rxAndroid
-
-    // lifecycle
-    implementation AndroidLibraries.lifecycleService
-    implementation AndroidLibraries.lifecycleViewmodelKtx
-    implementation AndroidLibraries.lifecycleCommonJava8
-
-    // coroutines
-    implementation AndroidLibraries.coroutinesCore
-    implementation AndroidLibraries.coroutinesAndroid
-
-    // paging
-    implementation AndroidLibraries.pagingKtx
-    implementation AndroidLibraries.pagingRxJava
-
-    // splashScreen
-    implementation AndroidLibraries.splashScreen
-
-    // hilt
-    implementation AndroidLibraries.hilt
-    kapt AndroidLibraries.hiltKapt
-    implementation AndroidLibraries.hiltAndroidX
-    kapt AndroidLibraries.hiltAndroidXKapt
-
-    // nav
-    implementation AndroidLibraries.navigation
-    implementation AndroidLibraries.navigationUi
-
-    // camera
-    implementation AndroidLibraries.cameraCore
-    implementation AndroidLibraries.camera2
-    implementation AndroidLibraries.cameraLifecycle
-    implementation AndroidLibraries.cameraView
-    implementation AndroidLibraries.cameraExtension
-
-    // photoView
-    implementation AndroidLibraries.photoView
-
-    //compress image
-    implementation AndroidLibraries.compressImg
-
-    testImplementation TestLibraries.junit
-    testImplementation TestLibraries.mockitoTest
-    testImplementation TestLibraries.mockitoInlineTest
-    testImplementation TestLibraries.archCoreTest // InstantTaskExecutorRule
-    testImplementation TestLibraries.kotlinCoroutinesTest //TestCoroutineDispatcher
-
-
-    androidTestImplementation AndroidTestLibraries.androidXTest
-    androidTestImplementation AndroidTestLibraries.junitAnroidTest
-    androidTestImplementation AndroidTestLibraries.espressoCoreAnroidTest
 }

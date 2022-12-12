@@ -17,6 +17,11 @@ dependencies {
     implementation AndroidLibraries.lifecycleCommonJava8
     implementation 'androidx.databinding:viewbinding:4.2.2'
 
+    // easy permission
+    implementation AndroidLibraries.easyPermission
+
+//    implementation project(Modules.navigation)
+
     // KOIN
     implementation AndroidLibraries.koin
     implementation AndroidLibraries.koinViewModel
